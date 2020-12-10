@@ -1,0 +1,72 @@
+{
+	"animals": [{
+			"id": "0",
+			"name": "Sharo",
+			"image": "images/sharo.png",
+			"type": "dog",
+			"city": "Sofia",
+			"description": "Sharo is very cute and really needs your help! He will make you smile!",
+			"volunteers": [{
+					"user": "dari",
+					"id": "1",
+					"animal_rescue_types": "",
+					"address": "Sofia",
+					"isApproved": "true",
+					"rating": "5",
+					"certificateDocument": "certificateDari.pdf"
+				},
+				{
+					"user": "dari",
+					"id": "1",
+					"animal_rescue_types": "",
+					"address": "Sofia"
+				}
+			]
+		},
+		{
+			"id": "1",
+			"name": "Kitty",
+			"image": "images/kitty.png",
+			"type": "cat",
+			"city": "Sofia",
+			"description": "Kitty very cute and really needs your help! She will make you smile!",
+			"volunteers": [{
+					"user": "leni",
+					"id": "1",
+					"animal_rescue_types": "",
+					"address": "Sofia",
+					"isApproved": "true",
+					"rating": "5",
+					"certificateDocument": "certificateLeni.pdf"
+				},
+				{
+					"user": "leni",
+					"id": "1",
+					"animal_rescue_types": "",
+					"address": "Sofia"
+				}
+			]
+		}
+	],
+	"users": [{
+			"user": "dari",
+			"id": "0",
+			"phone": "08287394r",
+			"postedAnimals": [{
+				"id": "1",
+				"date": "10/12/2020",
+				"expirationDate": "21/12/2020"
+			}]
+		},
+		{
+			"user": "leni",
+			"id": "1",
+			"phone": "082873900",
+			"postedAnimals": [{
+				"id": "0",
+				"date": "10/12/2020",
+				"expirationDate": "21/12/2020"
+			}]
+		}
+	]
+}

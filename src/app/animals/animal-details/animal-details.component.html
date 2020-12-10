@@ -1,0 +1,15 @@
+<h2>Animal Details</h2>
+
+<div *ngIf="animal">
+	<h3><span>Name: </span>{{ animal.name }}</h3>
+	<h4><span>Type: </span>{{ animal.type | uppercase }}</h4>
+  <h4><span>Location: </span>{{ animal.city }}</h4>
+	<p><span>Description: </span>{{ animal.description }}</p>
+
+  <div *ngIf="animal.volunteers">
+    <p>Someone has requested to rescue {{ animal.name }}</p>
+  </div>
+
+	<button (click)="wantToRescue(animal)" [disabled]="animal.volunteers">Request rescue</button>
+
+</div>
