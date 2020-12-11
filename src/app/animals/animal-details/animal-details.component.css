@@ -1,0 +1,43 @@
+h1 {
+  margin: 0 auto;
+  width: 10em;
+  margin-bottom: 2em;
+}
+
+.mat-button {
+  background-color: crimson;
+  color: white;
+  font-weight: bold;
+  width: 12em;
+}
+
+.mat-card {
+  width: 50%;
+  margin: 0 auto;
+  padding: 4em;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: row;
+}
+
+.mat-button:disabled {
+  background-color: lightgray;
+}
+.mat-card-header {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 3em;
+}
+
+#communicationBtn {
+  margin-left: 20em;
+}

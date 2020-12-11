@@ -8,6 +8,9 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
 import { MatGridListModule } from "@angular/material/grid-list";
 import { AnimalService } from './animal.service';
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
+import { AddAnimalComponent } from './add-animal/add-animal.component';
 
 @NgModule({
   imports: [
@@ -17,9 +20,11 @@ import { AnimalService } from './animal.service';
     ReactiveFormsModule,
     MatButtonModule,
     MatCardModule,
-    MatGridListModule
+    MatGridListModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
-  declarations: [AnimalsComponent, AnimalDetailsComponent],
+  declarations: [AnimalsComponent, AnimalDetailsComponent, AddAnimalComponent],
   exports: [AnimalsComponent],
   providers: [AnimalService]
 })

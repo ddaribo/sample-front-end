@@ -6,6 +6,7 @@ import { LoginComponent } from "../auth/login/login.component";
 import { RegisterComponent } from "../auth/register/register.component";
 import { AnimalsComponent } from "../animals/animals/animals.component";
 import { AnimalDetailsComponent } from "../animals/animal-details/animal-details.component";
+import { AddAnimalComponent } from "../animals/add-animal/add-animal.component";
 
 const routes: Routes = [
   {
@@ -21,9 +22,13 @@ const routes: Routes = [
     component: AnimalsComponent
   },
   {
+    path: "animals/add",
+    component: AddAnimalComponent
+  },
+  {
     path: "animals/:animalId",
     component: AnimalDetailsComponent
-  },
+  }
   // {
   //   path: "",
   //   component: AppComponent

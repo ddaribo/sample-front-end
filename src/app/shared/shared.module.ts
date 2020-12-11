@@ -11,6 +11,7 @@ import { RouterModule } from "@angular/router";
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatTabsModule } from "@angular/material/tabs";
 import { MatButtonModule } from "@angular/material/button";
+import { MatBadgeModule } from "@angular/material/badge";
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import { MatButtonModule } from "@angular/material/button";
     MatIconModule,
     MatSidenavModule,
     MatTabsModule,
-    MatButtonModule
+    MatButtonModule,
+    MatBadgeModule
   ],
   declarations: [HeaderComponent],
   exports: [MatToolbarModule, HeaderComponent]

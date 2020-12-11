@@ -1,3 +1,4 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <mat-toolbar color="primary" class="navbar">
 	<div>Animal Rescue</div>
 
@@ -14,8 +15,12 @@
 			<a mat-button [routerLink]="['animals']">Animals</a>
 		</div>
 		<div>
-			<a mat-button >
+			<a mat-button>
+				<span matBadge="2" matBadgeColor="warn"class="material-icons">notifications</span></a>
+		</div>
+		<div>
+			<a mat-button>
 				<span class="material-icons">exit_to_app</span>Log out</a>
-		</div>	
+		</div>
 	</div>
 </mat-toolbar>
