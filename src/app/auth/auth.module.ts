@@ -6,12 +6,15 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
 import { MatInputModule } from "@angular/material/input";
+import { AuthService } from './auth.service';
+
 
 @NgModule({
   imports: [CommonModule, FormsModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule],
   declarations: [LoginComponent, RegisterComponent],
   exports: [LoginComponent, RegisterComponent],
   providers: [
+    AuthService,
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },
   ]
 })

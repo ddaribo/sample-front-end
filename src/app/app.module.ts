@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import {APP_BASE_HREF} from '@angular/common';
+import "hammerjs";
 
 import { AppComponent } from "./app.component";
 import { ReadDataService } from "./read-data.service";
@@ -12,7 +13,6 @@ import { AnimalsModule } from "./animals/animals.module";
 import { AppRoutingModule } from "./app-routing/app-routing.module";
 import { AuthModule } from "./auth/auth.module";
 
-import "hammerjs";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatIconModule } from "@angular/material/icon";
 import { MatSidenavModule } from "@angular/material/sidenav";
@@ -23,18 +23,22 @@ import { MatButtonModule } from "@angular/material/button";
 @NgModule({
   imports: [
     BrowserModule,
+    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,
-    AnimalsModule,
-    SharedModule,
+
+    /*App modules */
     AppRoutingModule,
+    SharedModule,
+    AuthModule,
+    AnimalsModule,
+
+    /*Material design modules */
     MatToolbarModule,
     MatIconModule,
     MatSidenavModule,
     MatTabsModule,
-    MatButtonModule,
-    AuthModule
+    MatButtonModule
   ],
   declarations: [AppComponent],
   bootstrap: [AppComponent],

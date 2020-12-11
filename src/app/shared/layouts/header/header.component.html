@@ -3,13 +3,19 @@
 
 	<div class="links">
 		<div>
-			<a mat-button [routerLink]="['login']" routerLinkActive="active" class="nav-link">Login</a>
+			<a mat-button [routerLink]="['login']" routerLinkActive="active" class="nav-link">
+				Log in
+			</a>
 		</div>
 		<div>
-			<a mat-button [routerLink]="['register']">Register</a>
+			<a mat-button [routerLink]="['register']">Sign in</a>
 		</div>
 		<div>
 			<a mat-button [routerLink]="['animals']">Animals</a>
 		</div>
+		<div>
+			<a mat-button >
+				<span class="material-icons">exit_to_app</span>Log out</a>
+		</div>	
 	</div>
 </mat-toolbar>
