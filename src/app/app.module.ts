@@ -3,6 +3,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import {APP_BASE_HREF} from '@angular/common';
 
 import { AppComponent } from "./app.component";
 import { ReadDataService } from "./read-data.service";
@@ -37,6 +38,6 @@ import { MatButtonModule } from "@angular/material/button";
   ],
   declarations: [AppComponent],
   bootstrap: [AppComponent],
-  providers: [ReadDataService]
+  providers: [ReadDataService, {provide: APP_BASE_HREF, useValue: '/'}]
 })
 export class AppModule {}
