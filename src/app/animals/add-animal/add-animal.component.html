@@ -21,15 +21,8 @@
 					<input matInput type="date" formControlName="dueDate" required>
     </mat-form-field>
 
-					<!-- <label>Upload photo:</label>
-					<input type="file" formControlName="image" required class="custom-file-input"> -->
-
-					<div class="container">
-						<div class="button-wrap">
-							<label class="new-button" for="upload">Upload File</label>
-							<input id="upload" type="file">
-      </div>
-						</div>
+					<label>Upload photo:</label>
+					<input type="file" formControlName="image" required class="custom-file-input">
 
 						<button mat-button type="submit" [disabled]="!animalForm.valid">Submit</button>
 

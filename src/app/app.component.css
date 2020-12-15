@@ -1,1 +1,50 @@
+#petAdoptImg {
+  margin: 5em;
+}
 
+#firstHeader,
+#secondHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  color: crimson;
+}
+
+#firstHeader .headerAndList {
+  margin-top: 15em;
+}
+
+.headerAndList .mat-button {
+  background-color: crimson;
+  color: white;
+  font-weight: bold;
+  font-size: 1.1em;
+  padding: 0.5em;
+}
+
+#firstHeader .headerAndList h2 {
+  margin-top: 9em;
+}
+
+.headerAndList h1 {
+  font-size: 4em;
+}
+
+#secondHeaderMainH2 {
+  margin-top: 15em;
+  margin-right: 4em;
+}
+
+#secondHeader .headerAndList {
+  display: flex;
+  flex-direction: row;
+}
+
+#petPlayImg {
+  margin-right: 8em;
+}
+
+#secondHeaderText {
+  display: flex;
+  flex-direction: column;
+}

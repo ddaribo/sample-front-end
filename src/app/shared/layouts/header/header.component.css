@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Nerko+One&display=swap");
+
 .navbar {
   justify-content: space-between;
   background-color: crimson;
@@ -6,4 +8,24 @@
 .links {
   display: flex;
   flex-direction: row;
+}
+
+#mainLink {
+  font-family: "Nerko One", cursive;
+  font-size: 1.4em;
+}
+
+#mainLink a:link,
+a:visited,
+a:active {
+  text-decoration: none;
+  color: white;
+}
+
+#mainLink a:hover {
+  color: whitesmoke;
+}
+
+#mainLink span {
+  font-size: 1.2em;
 }

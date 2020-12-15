@@ -7,6 +7,7 @@ import { RegisterComponent } from "../auth/register/register.component";
 import { AnimalsComponent } from "../animals/animals/animals.component";
 import { AnimalDetailsComponent } from "../animals/animal-details/animal-details.component";
 import { AddAnimalComponent } from "../animals/add-animal/add-animal.component";
+import { HomePageComponent } from "../shared/layouts/home-page/home-page.component";
 
 const routes: Routes = [
   {
@@ -28,11 +29,11 @@ const routes: Routes = [
   {
     path: "animals/:animalId",
     component: AnimalDetailsComponent
+  },
+  {
+    path: "",
+    component: HomePageComponent
   }
-  // {
-  //   path: "",
-  //   component: AppComponent
-  // }
 ];
 
 @NgModule({

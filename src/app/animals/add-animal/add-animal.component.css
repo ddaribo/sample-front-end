@@ -29,14 +29,11 @@ button[type="submit"] {
   color: #fff;
   margin-bottom: 2em;
 }
-input[type="file"] {
-  position: absolute;
-  z-index: -1;
-  top: 6px;
-  left: 0;
-  font-size: 15px;
-  color: rgb(153, 153, 153);
+input[type="file" i] {
+  font-size: 20px;
+  margin: 1em 0;
 }
+
 .button-wrap {
   position: relative;
 }
