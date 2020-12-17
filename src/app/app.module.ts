@@ -3,7 +3,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import {APP_BASE_HREF} from '@angular/common';
+import { APP_BASE_HREF } from "@angular/common";
 import "hammerjs";
 
 import { AppComponent } from "./app.component";
@@ -18,7 +18,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatTabsModule } from "@angular/material/tabs";
 import { MatButtonModule } from "@angular/material/button";
-
+import { UserModule } from "./user/user.module";
 
 @NgModule({
   imports: [
@@ -32,6 +32,7 @@ import { MatButtonModule } from "@angular/material/button";
     SharedModule,
     AuthModule,
     AnimalsModule,
+    UserModule,
 
     /*Material design modules */
     MatToolbarModule,
@@ -42,6 +43,6 @@ import { MatButtonModule } from "@angular/material/button";
   ],
   declarations: [AppComponent],
   bootstrap: [AppComponent],
-  providers: [ReadDataService, {provide: APP_BASE_HREF, useValue: '/'}]
+  providers: [ReadDataService, { provide: APP_BASE_HREF, useValue: "/" }]
 })
 export class AppModule {}
