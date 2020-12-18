@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
+import * as _ from "lodash";
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -43,7 +44,12 @@ export class RegisterComponent implements OnInit {
         console.log(errorResponse);
       }
     ))*/
-    this.authService.register(this.registerForm.value);
+    const result = this.authService.register(this.registerForm.value);
+    if (!_.isEmpty(result['error'])) {
+      console.log("Something went wrong");
+    } else {
+      // Go to home page
+    }
 
   }
 }

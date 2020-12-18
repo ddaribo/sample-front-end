@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 import {camelToSnakeCase} from 'src/utils';
 
@@ -8,6 +8,7 @@ import {camelToSnakeCase} from 'src/utils';
   providedIn: 'root'
 })
 export class AuthService {
+  registerUrl: string = 'http://127.0.0.1:8000/auth/register/';
 
   constructor(private http: HttpClient) { }
 
@@ -18,6 +19,11 @@ export class AuthService {
       postData[newKey] = userData[key];
     }
     delete postData['confirm_password'];
-    return this.http.post('localhost:8000/auth/register/', postData);
+
+    this.http.post(this.registerUrl, JSON.stringify(postData), {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    }).toPromise().then((result) => {console.log(result); return result;});
   }
 }
