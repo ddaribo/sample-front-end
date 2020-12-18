@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
+import { Router } from '@angular/router';
 import * as _ from "lodash";
 import { AuthService } from '../auth.service';
 
@@ -27,7 +28,8 @@ export class RegisterComponent implements OnInit {
     confirmPassword: ["", Validators.required]
   });
   constructor(private fb: FormBuilder,
-    private authService: AuthService) {}
+    private authService: AuthService,
+    private router: Router) {}
 
   ngOnInit() {}
 
@@ -45,10 +47,11 @@ export class RegisterComponent implements OnInit {
       }
     ))*/
     const result = this.authService.register(this.registerForm.value);
-    if (!_.isEmpty(result['error'])) {
-      console.log("Something went wrong");
+    if (_.get(result, 'error')) {
+      console.log("Something went wrong", result['error']);
     } else {
       // Go to home page
+      this.router.navigate([''])
     }
 
   }
