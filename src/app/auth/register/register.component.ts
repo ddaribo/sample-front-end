@@ -9,7 +9,6 @@ import { AuthService } from '../auth.service';
 })
 export class RegisterComponent implements OnInit {
   user = {
-    username: "",
     password: "",
     confirmPassword: "",
     email: "",
@@ -17,13 +16,12 @@ export class RegisterComponent implements OnInit {
     lastName: "",
     city: ""
   };
-
+  // TODO: Add password and confirm password match validator
   registerForm = this.fb.group({
     firstName: ["", Validators.required],
     lastName: ["", Validators.required],
     email: ["", Validators.required],
     city: ["", Validators.required],
-    username: ["", Validators.required],
     password: ["", Validators.required],
     confirmPassword: ["", Validators.required]
   });
@@ -33,13 +31,13 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {}
 
   onSubmit() {
-    this.user.username = this.registerForm.value.username;
+    this.user.email = this.registerForm.value.email;
     this.user.password = this.registerForm.value.password;
     console.log("User: ", this.user);
 
     /*this.authService.register(this.registerForm.subscribe(
       () => {
-        console.log('success'); 
+        console.log('success');
       },
       (errorResponse) => {
         console.log(errorResponse);

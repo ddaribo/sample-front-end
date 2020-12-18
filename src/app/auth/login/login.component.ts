@@ -7,10 +7,10 @@ import { FormBuilder, Validators } from "@angular/forms";
   styleUrls: ["./login.component.css", "../authmodule.css"]
 })
 export class LoginComponent implements OnInit {
-  user = { username: "", password: "" };
+  user = { email: "", password: "" };
 
   profileForm = this.fb.group({
-    username: ["", Validators.required],
+    email: ["", Validators.required],
     password: ["", Validators.required]
   });
   constructor(private fb: FormBuilder) {}
@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {}
 
   onSubmit() {
-    this.user.username = this.profileForm.value.username;
+    this.user.email = this.profileForm.value.email;
     this.user.password = this.profileForm.value.password;
     console.log("User: ", this.user);
   }
