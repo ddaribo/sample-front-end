@@ -25,6 +25,7 @@
 		<mat-label>Password</mat-label>
 		<input matInput type="password" formControlName="password" required>
 	</mat-form-field>
+
 	<mat-form-field>
 		<mat-label>Confirm Password</mat-label>
 		<input matInput type="password" formControlName="confirmPassword" required>
@@ -32,5 +33,4 @@
 
 	<button mat-button type="submit" [disabled]="!registerForm.valid">Submit</button>
 
-	<p>{{registerForm.status}}</p>
 </form>

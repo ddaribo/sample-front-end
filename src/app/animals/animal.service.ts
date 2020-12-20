@@ -14,7 +14,7 @@ export class AnimalService {
 
   /*
   loadAllAnimals(): Observable<Animal[]> {
-    return this.http.get<Animal[]>("api/animals")
+    return this.http.get<Animal[]>("/api/animals")
       .pipe(
           map(res => res["animals"]), // or sth else
           // only trigger one http request for this observable; otherwise every subscription issues a separate http request

@@ -20,12 +20,12 @@ export class RegisterComponent implements OnInit {
   };
   // TODO: Add password and confirm password match validator
   registerForm = this.fb.group({
-    firstName: ["", Validators.required],
-    lastName: ["", Validators.required],
-    email: ["", Validators.required],
-    city: ["", Validators.required],
-    password: ["", Validators.required],
-    confirmPassword: ["", Validators.required]
+    firstName: ["", [Validators.required, Validators.minLength(2)] ],
+    lastName: ["", [Validators.required, Validators.minLength(2)] ],
+    email: ["", [Validators.required, Validators.email] ],
+    city: ["", [Validators.required, Validators.minLength(2)] ],
+    password: ["", [Validators.required, Validators.minLength(8)] ],
+    confirmPassword: ["", [Validators.required, Validators.minLength(8) ] ]
   });
   constructor(private fb: FormBuilder,
     private authService: AuthService,
@@ -34,25 +34,22 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {}
 
   onSubmit() {
-    this.user.email = this.registerForm.value.email;
-    this.user.password = this.registerForm.value.password;
-    console.log("User: ", this.user);
-
-    /*this.authService.register(this.registerForm.subscribe(
+    this.authService.register(this.registerForm.value).subscribe(
       () => {
         console.log('success');
+        this.router.navigate([''])
       },
       (errorResponse) => {
         console.log(errorResponse);
       }
-    ))*/
-    const result = this.authService.register(this.registerForm.value);
+    );
+
+    /*const result = this.authService.register(this.registerForm.value);
     if (_.get(result, 'error')) {
       console.log("Something went wrong", result['error']);
     } else {
       // Go to home page
       this.router.navigate([''])
-    }
-
+    }*/
   }
 }

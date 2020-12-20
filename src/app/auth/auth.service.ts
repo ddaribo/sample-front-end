@@ -1,18 +1,58 @@
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { BehaviorSubject, Observable } from "rxjs";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 
-import { camelToSnakeCase } from "src/utils";
+import { backendURL, camelToSnakeCase, loginURL, registerURL } from "src/utils";
+import { User } from "../shared/models/user";
+import { map, shareReplay, tap } from "rxjs/operators";
+import { runInThisContext } from "vm";
+
+// Local storage key under which the user profile is saved
+const AUTH_DATA = "auth_data";
 
 @Injectable({
   providedIn: "root",
 })
 export class AuthService {
-  registerUrl: string = "http://127.0.0.1:8000/auth/register/";
+  private subject = new BehaviorSubject<User>(null);
 
-  constructor(private http: HttpClient) {}
+  user$ : Observable<User> = this.subject.asObservable();
+  isLoggedIn$: Observable<boolean>;
+  isLoggedOut$: Observable<boolean>;
 
-  public register(userData: any) {
+  constructor(
+    private http: HttpClient) {
+
+    this.isLoggedIn$ = this.user$.pipe(map(user => !!user));
+
+    this.isLoggedOut$ = this.isLoggedIn$.pipe(map(loggedIn => !loggedIn));
+
+    const user = localStorage.getItem(AUTH_DATA); //string
+
+    if (user){
+      this.subject.next(JSON.parse(user));
+    }
+  }
+
+  public login(email: string, password: string): Observable<User>{
+
+    return this.http.post<User>(backendURL + loginURL, {email, password})
+      .pipe(
+        tap(user => {
+          this.subject.next(user);
+          localStorage.setItem(AUTH_DATA, JSON.stringify(user));
+        }),
+        // Avoid multiple calls to this api endpoint
+        shareReplay()
+      );
+    }
+
+  public logout(){
+    this.subject.next(null);
+    localStorage.removeItem(AUTH_DATA);
+  }
+
+  public register(userData: any) : Observable<User> {
     let postData = {};
     for (const key in userData) {
       const newKey: string = camelToSnakeCase(key);
@@ -20,15 +60,12 @@ export class AuthService {
     }
     delete postData["confirm_password"];
 
-    this.http
-      .post(this.registerUrl, JSON.stringify(postData), {
-        headers: new HttpHeaders({
-          "Content-Type": "application/json",
-        }),
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
       })
-      .toPromise()
-      .then((result) => {
-        return result;
-      });
+    };
+
+    return this.http.post<User>(backendURL + registerURL, JSON.stringify(postData), httpOptions);
   }
 }

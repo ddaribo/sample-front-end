@@ -6,23 +6,23 @@
   </div>
 
 	<div class="links">
-		<div>
+		<div *ngIf="auth.isLoggedOut$ | async">
 			<a mat-button [routerLink]="['login']" routerLinkActive="active" class="nav-link">
 				Log in
 			</a>
 		</div>
-		<div>
+		<div *ngIf="auth.isLoggedOut$ | async">
 			<a mat-button [routerLink]="['register']">Sign up</a>
 		</div>
 		<div>
 			<a mat-button [routerLink]="['animals']">Animals</a>
 		</div>
-		<div>
+		<div *ngIf="auth.isLoggedIn$ | async">
 			<a mat-button>
 				<span matBadge="2" matBadgeColor="warn"class="material-icons">notifications</span></a>
 		</div>
-		<div>
-			<a mat-button>
+		<div *ngIf="auth.isLoggedIn$ | async">
+			<a mat-button (click)="logout()">
 				<span class="material-icons">exit_to_app</span>Log out</a>
 		</div>
 	</div>
