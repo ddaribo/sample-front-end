@@ -13,6 +13,7 @@ import { MatTabsModule } from "@angular/material/tabs";
 import { MatButtonModule } from "@angular/material/button";
 import { MatBadgeModule } from "@angular/material/badge";
 import { HomePageComponent } from './layouts/home-page/home-page.component';
+import { InfoMessagesComponent } from './info-messages/info-messages.component';
 
 @NgModule({
   imports: [
@@ -27,7 +28,7 @@ import { HomePageComponent } from './layouts/home-page/home-page.component';
     MatButtonModule,
     MatBadgeModule
   ],
-  declarations: [HeaderComponent, HomePageComponent],
+  declarations: [HeaderComponent, HomePageComponent, InfoMessagesComponent],
   exports: [MatToolbarModule, HeaderComponent, HomePageComponent]
 })
 export class SharedModule {}

@@ -1,7 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Animal } from '../animal';
+import { InfoMessagesService } from "src/app/shared/info-messages/info-messages.service";
+import { Post } from "src/app/shared/models/post";
 import { AnimalService } from '../animal.service';
 
 @Component({
@@ -12,18 +13,20 @@ import { AnimalService } from '../animal.service';
 export class AnimalsComponent implements OnInit {
   animals: any;
   
-  //declare observable
-  //animals$: Observable<Animal[]>;
+  animals$: Observable<Post[]>;
 
-  constructor(private animalService: AnimalService) {}
+  constructor(
+    private animalService: AnimalService,
+    private infoMessagesService: InfoMessagesService) {}
 
   ngOnInit() {
+    //or sth like this
     this.animalService.getData().subscribe((response: any) => {
       this.animals = response.animals;
     });
 
     // For when connected to api
-    //this.animals$ = this.animalService.loadAllAnimals();
+    //this.animals$ = this.animalService.getPosts();
   
     //get some animal type
     /*const animalsDogs$ = this.animals$

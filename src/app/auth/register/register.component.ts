@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
 import { Router } from '@angular/router';
 import * as _ from "lodash";
+import { InfoMessagesService } from "src/app/shared/info-messages/info-messages.service";
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -29,7 +30,8 @@ export class RegisterComponent implements OnInit {
   });
   constructor(private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router) {}
+    private router: Router,
+    public infoMessagesService: InfoMessagesService) {}
 
   ngOnInit() {}
 
@@ -39,8 +41,10 @@ export class RegisterComponent implements OnInit {
         console.log('success');
         this.router.navigate([''])
       },
-      (errorResponse) => {
-        console.log(errorResponse);
+      (err) => {
+        const message = "Sign up failed!";
+        this.infoMessagesService.showErrors(message);
+        console.log(message, err);
       }
     );
 

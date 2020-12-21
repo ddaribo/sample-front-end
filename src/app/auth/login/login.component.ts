@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
+import { InfoMessagesService } from "src/app/shared/info-messages/info-messages.service";
 import { AuthService } from "../auth.service";
 
 @Component({
@@ -18,7 +19,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private auth: AuthService) {}
+    private auth: AuthService,
+    private infoMessagesService: InfoMessagesService) {}
 
   ngOnInit() {}
 
@@ -30,7 +32,9 @@ export class LoginComponent implements OnInit {
           this.router.navigateByUrl("/")
         },
         err => {
-          alert("Login failed!");
+          const message = "Login failed";
+          this.infoMessagesService.showErrors(message);
+          console.log(message, err);
         }
       );
   }

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from "@angular/core";
 import { AuthService } from "src/app/auth/auth.service";
+import { InfoMessagesService } from "../../info-messages/info-messages.service";
 
 @Component({
   selector: "app-header",
@@ -8,7 +9,8 @@ import { AuthService } from "src/app/auth/auth.service";
 })
 export class HeaderComponent implements OnInit {
   constructor(
-    public auth: AuthService
+    public auth: AuthService,
+    public infoMessages: InfoMessagesService
   ) {}
 
   ngOnInit() {}

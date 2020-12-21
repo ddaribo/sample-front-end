@@ -3,15 +3,19 @@ import { Observable, of } from "rxjs";
 import { delay, shareReplay } from "rxjs/operators";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { map, catchError } from "rxjs/operators";
-import { Animal } from './animal';
+import { Post } from "../shared/models/post";
+import { backendURL, postsURL } from "src/utils";
 
 @Injectable()
 export class AnimalService {
   constructor(private http: HttpClient) {}
-  getData() {
-    return this.http.get("/assets/db.json");
-  }
+   getData() {
+     return this.http.get("/assets/db.json");
+   }
 
+  public getPosts(): Observable<Post[]>{
+    return this.http.get<Post[]>(backendURL + postsURL);
+  }
   /*
   loadAllAnimals(): Observable<Animal[]> {
     return this.http.get<Animal[]>("/api/animals")
