@@ -10,6 +10,7 @@ import { MatGridListModule } from "@angular/material/grid-list";
 import { AnimalService } from './animal.service';
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
+import {MatSelectModule} from '@angular/material/select';
 import { AddAnimalComponent } from './add-animal/add-animal.component';
 
 @NgModule({
@@ -22,7 +23,8 @@ import { AddAnimalComponent } from './add-animal/add-animal.component';
     MatCardModule,
     MatGridListModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatSelectModule
   ],
   declarations: [AnimalsComponent, AnimalDetailsComponent, AddAnimalComponent],
   exports: [AnimalsComponent],

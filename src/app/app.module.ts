@@ -18,6 +18,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatTabsModule } from "@angular/material/tabs";
 import { MatButtonModule } from "@angular/material/button";
+import {MatSelectModule} from '@angular/material/select';
 import { UserModule } from "./user/user.module";
 
 @NgModule({
@@ -39,7 +40,8 @@ import { UserModule } from "./user/user.module";
     MatIconModule,
     MatSidenavModule,
     MatTabsModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSelectModule
   ],
   declarations: [AppComponent],
   bootstrap: [AppComponent],

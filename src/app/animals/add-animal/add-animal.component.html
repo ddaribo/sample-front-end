@@ -1,15 +1,27 @@
-<h1>Add animal for rescue</h1>
-<form [formGroup]="animalForm" (ngSubmit)="onSubmit()" class="register-form">
+<h1>Add animal for rescue. Write down your post</h1>
+<form [formGroup]="animalForm" (ngSubmit)="onSubmit()">
 
 	<mat-form-field>
-		<mat-label>First name</mat-label>
-		<input matInput type="text" formControlName="name" required>
-    </mat-form-field>
+		<mat-label>Title</mat-label>
+		<input matInput type="text" formControlName="title" required>
+		</mat-form-field>
 
 		<mat-form-field>
+			<mat-label>Description</mat-label>
+			<input matInput type="text" formControlName="description" required>
+			</mat-form-field>
+
+		<mat-form-field appearance="fill">
 			<mat-label>Animal type</mat-label>
-			<input matInput type="text" formControlName="animalType" required>
-    </mat-form-field>
+			<mat-select [(value)]="selected" formControlName="animalType" required>
+				<mat-option value="option1">Dog</mat-option>
+				<mat-option value="option2">Cat</mat-option>
+				<mat-option value="option3">Rabbit</mat-option>
+				<mat-option value="option3">Bird</mat-option>
+				<mat-option value="option3">Reptile</mat-option>
+				<mat-option value="option3">Other</mat-option>
+			</mat-select>
+		</mat-form-field>
 
 			<mat-form-field>
 				<mat-label>City</mat-label>
@@ -22,7 +34,8 @@
     </mat-form-field>
 
 					<label>Upload photo:</label>
-					<input type="file" formControlName="image" required class="custom-file-input">
+					<!-- Should we allow posts without images? -->
+					<input type="file" formControlName="image" required>
 
 						<button mat-button type="submit" [disabled]="!animalForm.valid">Submit</button>
 

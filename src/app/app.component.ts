@@ -21,9 +21,9 @@ export class AppComponent {
       this.myresponse = response;
       this.users = this.myresponse.users;
       this.animals = this.myresponse.animals;
-      console.log(this.myresponse);
-      console.log("First animal name: " + this.myresponse.animals[0].name);
-      console.log("First user name: " + this.myresponse.users[0].user);
+      // console.log(this.myresponse);
+      // console.log("First animal name: " + this.myresponse.animals[0].name);
+      // console.log("First user name: " + this.myresponse.users[0].user);
     });
   }
 }

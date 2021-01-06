@@ -49,6 +49,7 @@ export class AuthService {
 
   public logout(){
     this.subject.next(null);
+    // Should call the logout API
     localStorage.removeItem(AUTH_DATA);
   }
 

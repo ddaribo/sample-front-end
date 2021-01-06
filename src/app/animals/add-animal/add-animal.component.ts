@@ -10,7 +10,8 @@ import { AnimalService } from "../animal.service";
 })
 export class AddAnimalComponent implements OnInit {
   animalForm = this.fb.group({
-    name: ["", Validators.required],
+    title: ["", Validators.required],
+    description: ["", Validators.required],
     animalType: ["", Validators.required],
     city: ["", Validators.required],
     image: [""],
