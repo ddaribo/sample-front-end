@@ -1,11 +1,12 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, Observable } from "rxjs";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { BehaviorSubject, Observable, throwError } from "rxjs";
+import { HttpClient, HttpHeaders, HttpErrorResponse } from "@angular/common/http";
+
+import { catchError, map, shareReplay, tap } from "rxjs/operators";
+import * as _ from 'lodash';
 
 import { backendURL, camelToSnakeCase, loginURL, registerURL } from "src/utils";
 import { User } from "../shared/models/user";
-import { map, shareReplay, tap } from "rxjs/operators";
-import { runInThisContext } from "vm";
 
 // Local storage key under which the user profile is saved
 const AUTH_DATA = "auth_data";
@@ -34,6 +35,24 @@ export class AuthService {
     }
   }
 
+  public handleError(error: HttpErrorResponse) {
+    if (error.error instanceof ErrorEvent) {
+      // A client-side or network error occurred. Handle it accordingly.
+      console.error('An error occurred:', error.error.message);
+    } else {
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong
+      // TODO: Should show this error in the message box
+      const errorText = _.get(error.error.errors[0].message, '');
+      console.error(
+        `Backend returned status code of ${error.status}, ` +
+        `Error: ${errorText}`);
+    }
+    // return an observable with a user-facing error message
+    return throwError(
+      'Something wrong happened. Please try again later.');
+  }
+
   public login(email: string, password: string): Observable<User>{
 
     return this.http.post<User>(backendURL + loginURL, {email, password})
@@ -42,6 +61,7 @@ export class AuthService {
           this.subject.next(user);
           localStorage.setItem(AUTH_DATA, JSON.stringify(user));
         }),
+        catchError(this.handleError),
         // Avoid multiple calls to this api endpoint
         shareReplay()
       );
@@ -67,6 +87,8 @@ export class AuthService {
       })
     };
 
-    return this.http.post<User>(backendURL + registerURL, JSON.stringify(postData), httpOptions);
+    return this.http.post<User>(backendURL + registerURL, JSON.stringify(postData), httpOptions).pipe(
+      catchError(this.handleError)
+    )
   }
 }
