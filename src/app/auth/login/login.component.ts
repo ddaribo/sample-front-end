@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { InfoMessagesService } from "src/app/shared/info-messages/info-messages.service";
 import { AuthService } from "../auth.service";
+import { handleError } from "src/utils";
 
 @Component({
   selector: "app-login",
@@ -25,16 +26,15 @@ export class LoginComponent implements OnInit {
   ngOnInit() {}
 
   onSubmit() {
-    const formValue = this.profileForm.value; 
+    const formValue = this.profileForm.value;
     this.auth.login(formValue.email, formValue.password)
       .subscribe(
         () => {
           this.router.navigateByUrl("/")
         },
         err => {
-          const message = "Login failed";
+          const message = `Login failed: ${handleError(err)}`;
           this.infoMessagesService.showErrors(message);
-          console.log(message, err);
         }
       );
   }

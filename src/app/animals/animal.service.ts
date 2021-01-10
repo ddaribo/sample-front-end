@@ -1,13 +1,14 @@
 import { Injectable } from "@angular/core";
-import { Observable, of } from "rxjs";
+import { Observable, BehaviorSubject } from "rxjs";
 import { delay, shareReplay } from "rxjs/operators";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { map, catchError } from "rxjs/operators";
+import { HttpClient } from "@angular/common/http";
+import { tap } from "rxjs/operators";
 import { Post } from "../shared/models/post";
-import { backendURL, postsURL } from "src/utils";
+import { backendURL, postsURL, postsCreateURL } from "src/utils";
 
 @Injectable()
 export class AnimalService {
+  private subject = new BehaviorSubject<Post>(null);
   constructor(private http: HttpClient) {}
    getData() {
      return this.http.get("/assets/db.json");
@@ -15,6 +16,16 @@ export class AnimalService {
 
   public getPosts(): Observable<Post[]>{
     return this.http.get<Post[]>(backendURL + postsURL);
+  }
+
+  public createPost(postFormData): Observable<Post> {
+    return this.http
+      .post<Post>(backendURL + postsCreateURL, postFormData)
+      .pipe(
+        tap((post) => {
+          this.subject.next(post);
+        })
+      );
   }
   /*
   loadAllAnimals(): Observable<Animal[]> {

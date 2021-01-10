@@ -1,14 +1,15 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
-import { Router } from '@angular/router';
+import { Router } from "@angular/router";
 import * as _ from "lodash";
 import { InfoMessagesService } from "src/app/shared/info-messages/info-messages.service";
-import { AuthService } from '../auth.service';
+import { AuthService } from "../auth.service";
+import { handleError } from "src/utils";
 
 @Component({
   selector: "app-register",
   templateUrl: "./register.component.html",
-  styleUrls: ["./register.component.css", "../authmodule.css"]
+  styleUrls: ["./register.component.css", "../authmodule.css"],
 })
 export class RegisterComponent implements OnInit {
   user = {
@@ -17,32 +18,34 @@ export class RegisterComponent implements OnInit {
     email: "",
     firstName: "",
     lastName: "",
-    city: ""
+    city: "",
   };
   // TODO: Add password and confirm password match validator
   registerForm = this.fb.group({
-    firstName: ["", [Validators.required, Validators.minLength(2)] ],
-    lastName: ["", [Validators.required, Validators.minLength(2)] ],
-    email: ["", [Validators.required, Validators.email] ],
-    city: ["", [Validators.required, Validators.minLength(2)] ],
-    password: ["", [Validators.required, Validators.minLength(8)] ],
-    confirmPassword: ["", [Validators.required, Validators.minLength(8) ] ]
+    firstName: ["", [Validators.required, Validators.minLength(2)]],
+    lastName: ["", [Validators.required, Validators.minLength(2)]],
+    email: ["", [Validators.required, Validators.email]],
+    city: ["", [Validators.required, Validators.minLength(2)]],
+    password: ["", [Validators.required, Validators.minLength(8)]],
+    confirmPassword: ["", [Validators.required, Validators.minLength(8)]],
   });
-  constructor(private fb: FormBuilder,
+  constructor(
+    private fb: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    public infoMessagesService: InfoMessagesService) {}
+    public infoMessagesService: InfoMessagesService
+  ) {}
 
   ngOnInit() {}
 
   onSubmit() {
     this.authService.register(this.registerForm.value).subscribe(
       () => {
-        console.log('success');
-        this.router.navigate([''])
+        console.log("success");
+        this.router.navigate([""]);
       },
       (err) => {
-        const message = "Sign up failed!";
+        const message = `Register failed: ${handleError(err)}`;
         this.infoMessagesService.showErrors(message);
         console.log(message, err);
       }
