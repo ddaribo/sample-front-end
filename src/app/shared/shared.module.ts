@@ -1,7 +1,12 @@
-import { NgModule } from "@angular/core";
+import { NgModule, Injectable } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import {
+  HttpEvent, HttpInterceptor, HttpHandler, HttpRequest
+} from '@angular/common/http';
+
+import { Observable } from 'rxjs';
 
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatIconModule } from "@angular/material/icon";
@@ -32,3 +37,20 @@ import { InfoMessagesComponent } from './info-messages/info-messages.component';
   exports: [MatToolbarModule, HeaderComponent, HomePageComponent]
 })
 export class SharedModule {}
+
+
+/** Inject With Credentials into the request */
+@Injectable()
+export class HttpRequestInterceptor implements HttpInterceptor {
+
+  intercept(req: HttpRequest<any>, next: HttpHandler):
+    Observable<HttpEvent<any>> {
+
+      // console.log("interceptor: " + req.url);
+      req = req.clone({
+        withCredentials: true
+      });
+
+      return next.handle(req);
+  }
+}
