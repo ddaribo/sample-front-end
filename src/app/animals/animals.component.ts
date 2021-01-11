@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { InfoMessagesService } from "src/app/shared/info-messages/info-messages.service";
 import { Post } from "src/app/shared/models/post";
-import { AnimalService } from '../animal.service';
+import { AnimalService } from "./animal.service";
 
 @Component({
   selector: "app-animals",

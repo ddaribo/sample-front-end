@@ -6,11 +6,11 @@ import { InfoMessagesService } from "src/app/shared/info-messages/info-messages.
 import { AnimalService } from "../animal.service";
 
 @Component({
-  selector: "app-add-animal",
-  templateUrl: "./add-animal.component.html",
-  styleUrls: ["./add-animal.component.css"],
+  selector: "app-post-animal",
+  templateUrl: "./post-animal.component.html",
+  styleUrls: ["./post-animal.component.css"],
 })
-export class AddAnimalComponent implements OnInit {
+export class PostAnimalComponent implements OnInit {
   animalForm = this.fb.group({
     title: ["", Validators.required],
     description: ["", Validators.required],

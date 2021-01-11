@@ -10,22 +10,20 @@ import { backendURL, postsURL, postsCreateURL } from "src/utils";
 export class AnimalService {
   private subject = new BehaviorSubject<Post>(null);
   constructor(private http: HttpClient) {}
-   getData() {
-     return this.http.get("/assets/db.json");
-   }
+  getData() {
+    return this.http.get("/assets/db.json");
+  }
 
-  public getPosts(): Observable<Post[]>{
+  public getPosts(): Observable<Post[]> {
     return this.http.get<Post[]>(backendURL + postsURL);
   }
 
   public createPost(postFormData): Observable<Post> {
-    return this.http
-      .post<Post>(backendURL + postsCreateURL, postFormData)
-      .pipe(
-        tap((post) => {
-          this.subject.next(post);
-        })
-      );
+    return this.http.post<Post>(backendURL + postsCreateURL, postFormData).pipe(
+      tap((post) => {
+        this.subject.next(post);
+      })
+    );
   }
   /*
   loadAllAnimals(): Observable<Animal[]> {

@@ -1,14 +1,12 @@
 import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
 import { RouterModule, Routes } from "@angular/router";
-import { AppComponent } from "../app.component";
 import { LoginComponent } from "../auth/login/login.component";
 import { RegisterComponent } from "../auth/register/register.component";
-import { AnimalsComponent } from "../animals/animals/animals.component";
+import { AnimalsComponent } from "../animals/animals.component";
 import { AnimalDetailsComponent } from "../animals/animal-details/animal-details.component";
-import { AddAnimalComponent } from "../animals/add-animal/add-animal.component";
 import { HomePageComponent } from "../shared/layouts/home-page/home-page.component";
 import { UserPrivateComponent } from "../user/user-private/user-private.component";
+import { PostAnimalComponent } from "../animals/post-animal/post-animal.component";
 
 const routes: Routes = [
   {
@@ -24,8 +22,8 @@ const routes: Routes = [
     component: AnimalsComponent
   },
   {
-    path: "animals/add",
-    component: AddAnimalComponent
+    path: "animals/post",
+    component: PostAnimalComponent
   },
   {
     path: "animals/:animalId",

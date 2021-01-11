@@ -19,38 +19,36 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatBadgeModule } from "@angular/material/badge";
 import { HomePageComponent } from './layouts/home-page/home-page.component';
 import { InfoMessagesComponent } from './info-messages/info-messages.component';
+import { MatSelectModule } from "@angular/material/select";
+import { MatCardModule } from "@angular/material/card";
+import { MatGridListModule } from "@angular/material/grid-list";
+import { MatInputModule } from "@angular/material/input";
+import { MatFormFieldModule } from "@angular/material/form-field";
 
 @NgModule({
   imports: [
     CommonModule,
-    BrowserModule,
     BrowserAnimationsModule,
-    MatToolbarModule,
     RouterModule,
+  ],
+  declarations: [HeaderComponent, HomePageComponent, InfoMessagesComponent],
+  exports: [
+    HeaderComponent, 
+    HomePageComponent,
+      /*Material design modules */
+    MatToolbarModule,
     MatIconModule,
     MatSidenavModule,
     MatTabsModule,
     MatButtonModule,
-    MatBadgeModule
-  ],
-  declarations: [HeaderComponent, HomePageComponent, InfoMessagesComponent],
-  exports: [MatToolbarModule, HeaderComponent, HomePageComponent]
+    MatBadgeModule,
+    MatSelectModule,
+    MatButtonModule,
+    MatCardModule,
+    MatGridListModule,
+    MatInputModule,
+    MatFormFieldModule
+  ]
 })
 export class SharedModule {}
 
-
-/** Inject With Credentials into the request */
-@Injectable()
-export class HttpRequestInterceptor implements HttpInterceptor {
-
-  intercept(req: HttpRequest<any>, next: HttpHandler):
-    Observable<HttpEvent<any>> {
-
-      // console.log("interceptor: " + req.url);
-      req = req.clone({
-        withCredentials: true
-      });
-
-      return next.handle(req);
-  }
-}

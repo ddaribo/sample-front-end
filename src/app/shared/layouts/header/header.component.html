@@ -1,9 +1,10 @@
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 <mat-toolbar color="primary" class="navbar">
-	<div id="mainLink"><a [routerLink]="['']" routerLinkActive="active">
-    <span class="material-icons">pets</span>Animal Rescue
-    </a>
-  </div>
+	<div id="mainLink">
+		<a [routerLink]="['']" routerLinkActive="active">
+			<span class="material-icons">pets</span>Animal Rescue
+		</a>
+	</div>
 
 	<div class="links">
 		<div *ngIf="auth.isLoggedOut$ | async">
@@ -19,7 +20,7 @@
 		</div>
 		<div *ngIf="auth.isLoggedIn$ | async">
 			<a mat-button>
-				<span matBadge="2" matBadgeColor="warn"class="material-icons">notifications</span></a>
+				<span matBadge="2" matBadgeColor="warn" class="material-icons">notifications</span></a>
 		</div>
 		<div *ngIf="auth.isLoggedIn$ | async">
 			<a mat-button (click)="logout()">

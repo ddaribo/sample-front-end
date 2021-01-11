@@ -8,34 +8,34 @@ import { handleError } from "src/utils";
 @Component({
   selector: "app-login",
   templateUrl: "./login.component.html",
-  styleUrls: ["./login.component.css", "../authmodule.css"]
+  styleUrls: ["./login.component.css", "../authmodule.css"],
 })
 export class LoginComponent implements OnInit {
   //user = { email: "", password: "" };
 
   profileForm = this.fb.group({
     email: ["", [Validators.required, Validators.email]],
-    password: ["", Validators.required]
+    password: ["", Validators.required],
   });
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private auth: AuthService,
-    private infoMessagesService: InfoMessagesService) {}
+    private infoMessagesService: InfoMessagesService
+  ) {}
 
   ngOnInit() {}
 
   onSubmit() {
     const formValue = this.profileForm.value;
-    this.auth.login(formValue.email, formValue.password)
-      .subscribe(
-        () => {
-          this.router.navigateByUrl("/")
-        },
-        err => {
-          const message = `Login failed: ${handleError(err)}`;
-          this.infoMessagesService.showErrors(message);
-        }
-      );
+    this.auth.login(formValue.email, formValue.password).subscribe(
+      () => {
+        this.router.navigateByUrl("/");
+      },
+      (err) => {
+        const message = `Login failed: ${handleError(err)}`;
+        this.infoMessagesService.showErrors(message);
+      }
+    );
   }
 }

@@ -1,12 +1,12 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { map } from "rxjs/operators";
-import { AnimalService } from '../animal.service';
+import { AnimalService } from "../animal.service";
 
 @Component({
   selector: "app-animal-details",
   templateUrl: "./animal-details.component.html",
-  styleUrls: ["./animal-details.component.css"]
+  styleUrls: ["./animal-details.component.css"],
 })
 export class AnimalDetailsComponent implements OnInit {
   animal: any;
@@ -24,7 +24,7 @@ export class AnimalDetailsComponent implements OnInit {
       this.animalArr = response.animals;
       console.log(this.animalArr[0]);
 
-      this.route.paramMap.subscribe(params => {
+      this.route.paramMap.subscribe((params) => {
         this.animal = this.animalArr[params.get("animalId")];
       });
     });
