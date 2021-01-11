@@ -11,6 +11,9 @@ import { AnimalService } from "../animal.service";
   styleUrls: ["./post-animal.component.css"],
 })
 export class PostAnimalComponent implements OnInit {
+
+  private previewImage: any;
+
   animalForm = this.fb.group({
     title: ["", Validators.required],
     description: ["", Validators.required],
@@ -27,6 +30,24 @@ export class PostAnimalComponent implements OnInit {
   ) {}
 
   ngOnInit() {}
+
+  onFileChanged(event: any){
+    const files =  event.target.files;
+    if (files.length === 0)
+      return;
+ 
+    var mimeType = files[0].type;
+    if (mimeType.match(/image\/*/) == null) {
+      return;
+    }
+ 
+    var reader = new FileReader();
+    this.previewImage= files;
+    reader.readAsDataURL(files[0]); 
+    reader.onload = (_event) => { 
+      this.previewImage = reader.result; 
+    }
+  }
 
   onSubmit() {
     let postData = {};

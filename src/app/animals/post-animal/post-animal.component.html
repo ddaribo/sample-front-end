@@ -1,44 +1,51 @@
 <h1>Add animal for rescue. Write down your post</h1>
+
 <form [formGroup]="animalForm" (ngSubmit)="onSubmit()">
-  <mat-form-field>
-    <mat-label>Title</mat-label>
-    <input matInput type="text" formControlName="title" required />
-  </mat-form-field>
+  <div class="form-content">
 
-  <mat-form-field>
-    <mat-label>Description</mat-label>
-    <input matInput type="text" formControlName="description" required />
-  </mat-form-field>
+    <mat-form-field>
+      <mat-label>Title</mat-label>
+      <input matInput type="text" formControlName="title" required />
+    </mat-form-field>
+  
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <input matInput type="text" formControlName="description" required />
+    </mat-form-field>
+  
+    <mat-form-field appearance="fill">
+      <mat-label>Animal type</mat-label>
+      <mat-select [(value)]="selected" formControlName="animalType" required>
+        <mat-option value="option1">Dog</mat-option>
+        <mat-option value="option2">Cat</mat-option>
+        <mat-option value="option3">Rabbit</mat-option>
+        <mat-option value="option4">Bird</mat-option>
+        <mat-option value="option5">Reptile</mat-option>
+        <mat-option value="option6">Other</mat-option>
+      </mat-select>
+    </mat-form-field>
+  
+    <mat-form-field>
+      <mat-label>City</mat-label>
+      <input matInput type="text" formControlName="city" required />
+    </mat-form-field>
+  
+    <mat-form-field>
+      <mat-label>Post due date:</mat-label>
+      <input matInput type="date" formControlName="dueDate" required />
+    </mat-form-field>
+  
+      <label>Upload photo of the animal:</label>
+      <!-- Should we allow posts without images? -->
+      <input type="file" formControlName="image" accept='image/*' required (change)="onFileChanged($event)" />
+  
+      <div class="img-container">
+        <img *ngIf="previewImage" [src]="previewImage"/>
+      </div>
+   
+    <button mat-button type="submit" [disabled]="!animalForm.valid" >
+      Submit
+    </button>
+  </div>
 
-  <mat-form-field appearance="fill">
-    <mat-label>Animal type</mat-label>
-    <mat-select [(value)]="selected" formControlName="animalType" required>
-      <mat-option value="option1">Dog</mat-option>
-      <mat-option value="option2">Cat</mat-option>
-      <mat-option value="option3">Rabbit</mat-option>
-      <mat-option value="option3">Bird</mat-option>
-      <mat-option value="option3">Reptile</mat-option>
-      <mat-option value="option3">Other</mat-option>
-    </mat-select>
-  </mat-form-field>
-
-  <mat-form-field>
-    <mat-label>City</mat-label>
-    <input matInput type="text" formControlName="city" required />
-  </mat-form-field>
-
-  <mat-form-field>
-    <mat-label>Post due date:</mat-label>
-    <input matInput type="date" formControlName="dueDate" required />
-  </mat-form-field>
-
-  <label>Upload photo:</label>
-  <!-- Should we allow posts without images? -->
-  <input type="file" formControlName="image" required />
-
-  <button mat-button type="submit" [disabled]="!animalForm.valid">
-    Submit
-  </button>
-
-  <p>{{ animalForm.status }}</p>
 </form>
