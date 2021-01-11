@@ -1,10 +1,11 @@
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder, Validators } from "@angular/forms";
+import { AbstractControl, FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, ValidationErrors, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import * as _ from "lodash";
 import { InfoMessagesService } from "src/app/shared/info-messages/info-messages.service";
 import { AuthService } from "../auth.service";
 import { handleError } from "src/utils";
+import { ErrorStateMatcher } from "@angular/material/core";
 
 @Component({
   selector: "app-register",
@@ -27,7 +28,7 @@ export class RegisterComponent implements OnInit {
     email: ["", [Validators.required, Validators.email]],
     city: ["", [Validators.required, Validators.minLength(2)]],
     password: ["", [Validators.required, Validators.minLength(8)]],
-    confirmPassword: ["", [Validators.required, Validators.minLength(8)]],
+    confirmPassword: ["", [Validators.required, Validators.minLength(8), RegisterComponent.matchValues('password')]],
   });
   constructor(
     private fb: FormBuilder,
@@ -36,7 +37,23 @@ export class RegisterComponent implements OnInit {
     public infoMessagesService: InfoMessagesService
   ) {}
 
-  ngOnInit() {}
+  public static matchValues(
+    matchTo: string // name of the control to match to
+  ): (AbstractControl) => ValidationErrors | null {
+    return (control: AbstractControl): ValidationErrors | null => {
+      return !!control.parent &&
+        !!control.parent.value &&
+        control.value === control.parent.controls[matchTo].value
+        ? null
+        : { isMatching: false };
+    };
+  }
+  
+  ngOnInit() {
+    this.registerForm.controls.password.valueChanges.subscribe(() => {
+      this.registerForm.controls.confirmPassword.updateValueAndValidity();
+    });
+  }
 
   onSubmit() {
     this.authService.register(this.registerForm.value).subscribe(
@@ -50,13 +67,7 @@ export class RegisterComponent implements OnInit {
         console.log(message, err);
       }
     );
-
-    /*const result = this.authService.register(this.registerForm.value);
-    if (_.get(result, 'error')) {
-      console.log("Something went wrong", result['error']);
-    } else {
-      // Go to home page
-      this.router.navigate([''])
-    }*/
+  
   }
 }
+

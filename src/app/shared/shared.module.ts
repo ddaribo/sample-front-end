@@ -23,13 +23,13 @@ import { MatSelectModule } from "@angular/material/select";
 import { MatCardModule } from "@angular/material/card";
 import { MatGridListModule } from "@angular/material/grid-list";
 import { MatInputModule } from "@angular/material/input";
-import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatError, MatFormFieldModule } from "@angular/material/form-field";
 
 @NgModule({
   imports: [
     CommonModule,
     BrowserAnimationsModule,
-    RouterModule,
+    RouterModule
   ],
   declarations: [HeaderComponent, HomePageComponent, InfoMessagesComponent],
   exports: [
