@@ -20,9 +20,8 @@ export class AnimalDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.animalService.getData().subscribe((response: any) => {
-      this.animalArr = response.animals;
-      console.log(this.animalArr[0]);
+    this.animalService.getPosts().subscribe((response: any) => {
+      this.animalArr = response;
 
       this.route.paramMap.subscribe((params) => {
         this.animal = this.animalArr[params.get("animalId")];

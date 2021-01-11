@@ -4,15 +4,15 @@
   <mat-card>
     <div class="card-content">
       <mat-card-header>
-        <h2><span>Name: </span>{{ animal.name }}</h2>
-        <h2><span>Type: </span>{{ animal.type | uppercase }}</h2>
-        <h3><span>Location: </span>{{ animal.city }}</h3>
+        <h2><span>Name: </span>{{ animal.title }}</h2>
+        <h2><span>Type: </span>{{ animal.animal_species | uppercase }}</h2>
+        <h3><span>Location: </span>{{ animal.location }}</h3>
         <p><span>Description: </span>{{ animal.description }}</p>
-        <h4><span>Posted by: </span>username</h4>
-        <h4><span>Due date: </span>01/01/21</h4>
+        <h4><span>Posted by: </span>{{ animal.user_created.first_name + animal.user_created.last_name }}</h4>
+        <h4><span>Due date: </span>{{ animal.date_updated }}</h4>
 
         <div *ngIf="animal.volunteers">
-          <p>Someone has requested to rescue {{ animal.name }}</p>
+          <p>Someone has requested to rescue {{ animal.title}}</p>
         </div>
         <button mat-button (click)="wantToRescue(animal)" [disabled]="animal.volunteers">
           Rescue

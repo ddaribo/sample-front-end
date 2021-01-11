@@ -1,12 +1,6 @@
-import { NgModule, Injectable } from "@angular/core";
+import { NgModule} from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import {
-  HttpEvent, HttpInterceptor, HttpHandler, HttpRequest
-} from '@angular/common/http';
-
-import { Observable } from 'rxjs';
 
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatIconModule } from "@angular/material/icon";
@@ -23,7 +17,8 @@ import { MatSelectModule } from "@angular/material/select";
 import { MatCardModule } from "@angular/material/card";
 import { MatGridListModule } from "@angular/material/grid-list";
 import { MatInputModule } from "@angular/material/input";
-import { MatError, MatFormFieldModule } from "@angular/material/form-field";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { ShortenPipe } from "./shorten-description.pipe";
 
 @NgModule({
   imports: [
@@ -31,10 +26,11 @@ import { MatError, MatFormFieldModule } from "@angular/material/form-field";
     BrowserAnimationsModule,
     RouterModule
   ],
-  declarations: [HeaderComponent, HomePageComponent, InfoMessagesComponent],
+  declarations: [HeaderComponent, HomePageComponent, InfoMessagesComponent, ShortenPipe],
   exports: [
     HeaderComponent, 
     HomePageComponent,
+    ShortenPipe,
       /*Material design modules */
     MatToolbarModule,
     MatIconModule,

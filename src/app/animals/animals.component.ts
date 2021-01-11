@@ -1,8 +1,9 @@
 import { Component, OnInit } from "@angular/core";
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { InfoMessagesService } from "src/app/shared/info-messages/info-messages.service";
 import { Post } from "src/app/shared/models/post";
+import { User } from "../shared/models/user";
 import { AnimalService } from "./animal.service";
 
 @Component({
@@ -11,28 +12,31 @@ import { AnimalService } from "./animal.service";
   styleUrls: ["./animals.component.css"]
 })
 export class AnimalsComponent implements OnInit {
-  animals: any;
+
   
-  animals$: Observable<Post[]>;
+  animals: Post[] = [];
+  posts$: Observable<Post[]>;
+  postsChanged = new BehaviorSubject<Post[]>(null);
 
   constructor(
     private animalService: AnimalService,
     private infoMessagesService: InfoMessagesService) {}
 
   ngOnInit() {
-    //or sth like this
-    this.animalService.getData().subscribe((response: any) => {
-      this.animals = response.animals;
-    });
+    /*this.animalService.getPosts().subscribe((response: any) => {
+      console.log(response);
+      this.animals = response;
+    });*/
 
-    // For when connected to api
-    //this.animals$ = this.animalService.getPosts();
-  
+    // Or use observable?
+    this.posts$ = this.animalService.getPosts();
+    
     //get some animal type
-    /*const animalsDogs$ = this.animals$
-     .pipe(
-       map(animals => animals.filter(animal => animal.type == "dog"))
-     );*/
-  }
+    /*this.posts$ = this.posts$
+    .pipe(
+      map(animals => animals.filter(animal => animal.animal_species === "dog"))
+      );*/
+      
+    }
 
 }

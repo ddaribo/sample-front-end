@@ -34,11 +34,11 @@ import { HttpRequestInterceptor } from "./auth/auth-interceptor.service";
   providers: [
     ReadDataService,
     { provide: APP_BASE_HREF, useValue: "/" },
-    {
+    /*{
       provide: HTTP_INTERCEPTORS,
       useClass: HttpRequestInterceptor,
       multi: true,
-    },
+    },*/
   ],
 })
 export class AppModule {}

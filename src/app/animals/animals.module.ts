@@ -7,20 +7,23 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AnimalService } from './animal.service';
 import { SharedModule } from "../shared/shared.module";
 import { PostAnimalComponent } from './post-animal/post-animal.component';
+import { AnimalListItemComponent } from './animal-list-item/animal-list-item.component';
 
 @NgModule({
   declarations: [
     AnimalsComponent, 
     AnimalDetailsComponent, 
-    PostAnimalComponent],
+    PostAnimalComponent, 
+    AnimalListItemComponent,
+  ],
   imports: [
     CommonModule,
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
   ],
-  exports: [AnimalsComponent, AnimalDetailsComponent, PostAnimalComponent],
+  exports: [AnimalsComponent, AnimalDetailsComponent, PostAnimalComponent, AnimalListItemComponent],
   providers: [AnimalService]
 })
 export class AnimalsModule {}

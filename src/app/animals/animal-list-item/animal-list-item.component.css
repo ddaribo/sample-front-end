@@ -1,0 +1,11 @@
+
+ .mat-card{
+    margin: 2em 5em;
+    /*height: 530px;*/
+    height: auto;
+  } 
+
+  .mat-card-content{
+      height: 50px;
+  }
+

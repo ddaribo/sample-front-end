@@ -1,27 +1,15 @@
-<p>Animals:</p>
-<mat-grid-list cols="2">
-  <!-- <div *ngFor="let animal of (animals$ | async)"> -->
+<h1>Explore cuties for rescue:</h1>
+<div>
+  <mat-grid-list cols="3">
+    <!-- <div *ngFor="let animal of animals; let i = index;"> -->
+      <!-- or use observable -->
+      <div *ngFor="let animal of (posts$ | async) ; let i = index;">
+          <mat-grid-tile>
+          <app-animal-list-item [animal]="animal" [animalIndex]="i"></app-animal-list-item>
+        </mat-grid-tile>
+        </div>
+    <div>
 
-  <div *ngFor="let animal of animals">
-    <mat-grid-tile>
-      <mat-card class="example-card">
-        <mat-card-header>
-          <div mat-card-avatar class="example-header-image"></div>
-          <mat-card-title>{{ animal.name }}</mat-card-title>
-          <mat-card-subtitle>{{ animal.type }}</mat-card-subtitle>
-        </mat-card-header>
-        <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-          alt="Photo of {{ animal.name }}" />
-        <mat-card-content>
-          <p>
-            {{ animal.description }}
-          </p>
-        </mat-card-content>
-        <mat-card-actions>
-          <a mat-button color="primary" [routerLink]="['/animals', animal.id]">See more</a>
-          <button mat-button>SHARE</button>
-        </mat-card-actions>
-      </mat-card>
-    </mat-grid-tile>
-  </div>
-</mat-grid-list>
+    </div>
+  </mat-grid-list>
+</div>

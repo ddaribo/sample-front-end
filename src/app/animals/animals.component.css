@@ -1,9 +1,5 @@
-mat-grid-tile {
-  height: 12em;
-
-}
-
-
-.mat-card{
-  margin: 2em 1em;
+h1{
+  text-align: center;
+  color: crimson;
+  margin-top: 1em;
 }

@@ -57,6 +57,7 @@ export class PostAnimalComponent implements OnInit {
     }
 
     this.animalService.createPost(postData).subscribe(
+      //TODO: Modify post data according to expected backend model
       () => {
         this.router.navigate([""]);
         console.log("Post was published successfully");
