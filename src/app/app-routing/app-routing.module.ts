@@ -19,6 +19,18 @@ const routes: Routes = [
     component: RegisterComponent
   },
   {
+    path: "animals",
+    component: AnimalsComponent
+  },
+  {
+    path: "animals/post",
+    component: PostAnimalComponent
+  },
+  {
+    path: "animals/:animalId",
+    component: AnimalDetailsComponent
+  },
+  {
     path: "user",
     component: UserPrivateComponent
   },

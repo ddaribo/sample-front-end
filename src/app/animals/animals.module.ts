@@ -9,21 +9,6 @@ import { SharedModule } from "../shared/shared.module";
 import { PostAnimalComponent } from './post-animal/post-animal.component';
 import { AnimalListItemComponent } from './animal-list-item/animal-list-item.component';
 
-const animalRoutes: Routes = [
-  {
-    path: "animals",
-    component: AnimalsComponent
-  },
-  {
-    path: "animals/post",
-    component: PostAnimalComponent
-  },
-  {
-    path: "animals/:animalId",
-    component: AnimalDetailsComponent
-  },
-]
-
 @NgModule({
   declarations: [
     AnimalsComponent, 
@@ -36,11 +21,9 @@ const animalRoutes: Routes = [
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule,
-    RouterModule.forChild(animalRoutes)
+    SharedModule
   ],
-  // exports: [AnimalsComponent, AnimalDetailsComponent, PostAnimalComponent, AnimalListItemComponent],
-  exports: [RouterModule],
+  exports: [AnimalsComponent, AnimalDetailsComponent, PostAnimalComponent, AnimalListItemComponent],
   providers: [AnimalService]
 })
 export class AnimalsModule {}

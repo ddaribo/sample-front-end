@@ -58,13 +58,20 @@ export class RegisterComponent implements OnInit {
   onSubmit() {
     this.authService.register(this.registerForm.value).subscribe(
       () => {
-        console.log("success");
+        const message = `Successfully signed up!`;
         this.router.navigate([""]);
+        this.infoMessagesService.showErrors( {
+          message: message,
+          areErrors: false
+        });
       },
       (err) => {
-        const message = `Register failed: ${handleError(err)}`;
-        this.infoMessagesService.showErrors(message);
-        console.log(message, err);
+        const message = `Signing up failed: ${handleError(err)}.`;
+        //this.infoMessagesService.showErrors(message);
+        this.infoMessagesService.showErrors( {
+          message: message,
+          areErrors: true
+        });
       }
     );
   

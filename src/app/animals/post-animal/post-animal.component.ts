@@ -60,22 +60,26 @@ export class PostAnimalComponent implements OnInit {
       const newKey: string = camelToSnakeCase(key);
       postData[newKey] = this.animalForm.value[key];
     }
-   //console.log(this.animalForm.value);
     const reader = new FileReader();
     reader.readAsDataURL(this.uploadedImageFile);
     reader.onload = () => {
       postData['photo'] = reader.result;
 
       this.animalService.createPost(postData).subscribe(
-        //TODO: Modify post data according to expected backend model
         () => {
           this.router.navigate([""]);
-          console.log("Post was published successfully");
-          // TODO: Show notification for successfully created post
+          const message = `Post creation was successful!`;
+          this.infoMessagesService.showErrors( {
+            message: message,
+            areErrors:false
+          });
         },
         (err) => {
           const message = `Post creation failed: ${handleError(err)}`;
-          this.infoMessagesService.showErrors(message);
+          this.infoMessagesService.showErrors( {
+            message: message,
+            areErrors:true
+          });
         }
       );
     };

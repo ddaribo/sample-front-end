@@ -11,7 +11,7 @@ import { InfoMessagesService } from './info-messages.service';
 export class InfoMessagesComponent implements OnInit {
 
   showMessages = false;
-  errors$: Observable<string[]>;
+  messages$: Observable<{message: string, areErrors: boolean}>;
   isError = false;
   isInfo = false;
 
@@ -20,13 +20,14 @@ export class InfoMessagesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.errors$ = this.infoMessagesService.errors$
+    this.messages$ = this.infoMessagesService.messages$
       .pipe(
         tap(() => {
           this.showMessages = true;
+          console.log(this.messages$);
           setTimeout(() => {
             this.onClose();
-          }, 2500);
+          }, 3500);
         })
       );
   }

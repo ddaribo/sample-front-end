@@ -31,10 +31,17 @@ export class LoginComponent implements OnInit {
     this.auth.login(formValue.email, formValue.password).subscribe(
       () => {
         this.router.navigateByUrl("/");
+        this.infoMessagesService.showErrors({
+          message: "Successfully logged in.",
+          areErrors: false
+        });
       },
       (err) => {
         const message = `Login failed: ${handleError(err)}`;
-        this.infoMessagesService.showErrors(message);
+        this.infoMessagesService.showErrors({
+          message: message,
+          areErrors: true
+        });
       }
     );
   }

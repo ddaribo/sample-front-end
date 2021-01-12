@@ -13,6 +13,10 @@
     cursor: pointer;
 }
 
-.message{
-
+.successClass{
+    display: flex;
+    background-color: #dff3dc;
+    border: 1px solid #b5d4b3;
+    padding: 20px;
+    position: relative;
 }
