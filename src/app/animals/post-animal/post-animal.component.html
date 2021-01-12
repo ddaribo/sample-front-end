@@ -15,9 +15,9 @@
   
     <mat-form-field appearance="fill">
       <mat-label>Animal type</mat-label>
-      <mat-select [(value)]="selected" formControlName="animalType" required>
-        <mat-option value="option1">Dog</mat-option>
-        <mat-option value="option2">Cat</mat-option>
+      <mat-select [(value)]="selected" formControlName="animal_species" required>
+        <mat-option value="dog">Dog</mat-option>
+        <mat-option value="cat">Cat</mat-option>
         <mat-option value="option3">Rabbit</mat-option>
         <mat-option value="option4">Bird</mat-option>
         <mat-option value="option5">Reptile</mat-option>
@@ -32,12 +32,12 @@
   
     <mat-form-field>
       <mat-label>Post due date:</mat-label>
-      <input matInput type="date" formControlName="dueDate" required />
+      <input matInput type="date" formControlName="date_updated" required />
     </mat-form-field>
   
       <label>Upload photo of the animal:</label>
       <!-- Should we allow posts without images? -->
-      <input type="file" formControlName="image" accept='image/*' required (change)="onFileChanged($event)" />
+      <input type="file" formControlName="photo" id="photo" accept='image/*' (change)="onFileChanged($event)" />
   
       <div class="img-container">
         <img *ngIf="previewImage" [src]="previewImage"/>

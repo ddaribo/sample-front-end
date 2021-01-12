@@ -18,7 +18,7 @@ export class AnimalService {
     return this.http.get<Post[]>(fakeAnimalsApiUrl);
   }
 
-  public createPost(postFormData): Observable<Post> {
+  public createPost(postData): Observable<Post> {
     const httpOptions = {
       headers: new HttpHeaders({
         "Content-Type": "application/json",
@@ -27,13 +27,14 @@ export class AnimalService {
       }),
     }
     return this.http
-      .post<Post>(backendURL + postsCreateURL, postFormData, httpOptions)
+      .post<Post>(backendURL + postsCreateURL, postData, httpOptions)
       .pipe(
         tap((post) => {
           this.subject.next(post);
         })
       );
   }
+}
   /*
   loadAllAnimals(): Observable<Animal[]> {
     return this.http.get<Animal[]>("/api/animals")
@@ -48,3 +49,4 @@ export class AnimalService {
     return this.http.post<Post>(fakeAnimalsApiUrl, postFormData);
   }
 }
+*/

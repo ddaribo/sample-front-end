@@ -4,6 +4,7 @@ import { FormBuilder, Validators } from "@angular/forms";
 import { handleError, camelToSnakeCase } from "src/utils";
 import { InfoMessagesService } from "src/app/shared/info-messages/info-messages.service";
 import { AnimalService } from "../animal.service";
+import { UserService } from "src/app/user/user.service";
 
 @Component({
   selector: "app-post-animal",
@@ -13,20 +14,22 @@ import { AnimalService } from "../animal.service";
 export class PostAnimalComponent implements OnInit {
 
   private previewImage: any;
+  private uploadedImageFile: File;
 
   animalForm = this.fb.group({
     title: ["", Validators.required],
     description: ["", Validators.required],
-    animalType: ["", Validators.required],
+    animal_species: ["", Validators.required],
+    date_updated: ["", Validators.required],
     city: ["", Validators.required],
-    image: [""],
-    dueDate: [""],
+    photo: [""],
   });
   constructor(
     private fb: FormBuilder,
     private animalService: AnimalService,
     private router: Router,
-    public infoMessagesService: InfoMessagesService
+    public infoMessagesService: InfoMessagesService,
+    private userService: UserService
   ) {}
 
   ngOnInit() {}
@@ -36,6 +39,7 @@ export class PostAnimalComponent implements OnInit {
     if (files.length === 0)
       return;
  
+    this.uploadedImageFile = event.target.files[0];
     var mimeType = files[0].type;
     if (mimeType.match(/image\/*/) == null) {
       return;
@@ -46,6 +50,7 @@ export class PostAnimalComponent implements OnInit {
     reader.readAsDataURL(files[0]); 
     reader.onload = (_event) => { 
       this.previewImage = reader.result; 
+      //console.log(this.previewImage);
     }
   }
 
@@ -55,6 +60,12 @@ export class PostAnimalComponent implements OnInit {
       const newKey: string = camelToSnakeCase(key);
       postData[newKey] = this.animalForm.value[key];
     }
+    postData['date_created'] = new Date();
+    postData['date_updated'] = new Date();
+   //console.log(this.animalForm.value);
+    postData['photo'] = this.uploadedImageFile;
+    postData['author'] = this.userService.getCurrentUser();
+    console.log(postData);
 
     this.animalService.createPost(postData).subscribe(
       //TODO: Modify post data according to expected backend model
