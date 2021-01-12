@@ -20,7 +20,7 @@ export class PostAnimalComponent implements OnInit {
     title: ["", Validators.required],
     description: ["", Validators.required],
     animal_species: ["", Validators.required],
-    date_updated: ["", Validators.required],
+    due_date: ["", Validators.required],
     city: ["", Validators.required],
     photo: [""],
   });
@@ -38,18 +38,18 @@ export class PostAnimalComponent implements OnInit {
     const files =  event.target.files;
     if (files.length === 0)
       return;
- 
+
     this.uploadedImageFile = event.target.files[0];
     var mimeType = files[0].type;
     if (mimeType.match(/image\/*/) == null) {
       return;
     }
- 
+
     var reader = new FileReader();
     this.previewImage= files;
-    reader.readAsDataURL(files[0]); 
-    reader.onload = (_event) => { 
-      this.previewImage = reader.result; 
+    reader.readAsDataURL(files[0]);
+    reader.onload = (_event) => {
+      this.previewImage = reader.result;
       //console.log(this.previewImage);
     }
   }
@@ -60,24 +60,24 @@ export class PostAnimalComponent implements OnInit {
       const newKey: string = camelToSnakeCase(key);
       postData[newKey] = this.animalForm.value[key];
     }
-    postData['date_created'] = new Date();
-    postData['date_updated'] = new Date();
    //console.log(this.animalForm.value);
-    postData['photo'] = this.uploadedImageFile;
-    postData['author'] = this.userService.getCurrentUser();
-    console.log(postData);
+    const reader = new FileReader();
+    reader.readAsDataURL(this.uploadedImageFile);
+    reader.onload = () => {
+      postData['photo'] = reader.result;
 
-    this.animalService.createPost(postData).subscribe(
-      //TODO: Modify post data according to expected backend model
-      () => {
-        this.router.navigate([""]);
-        console.log("Post was published successfully");
-        // TODO: Show notification for successfully created post
-      },
-      (err) => {
-        const message = `Post creation failed: ${handleError(err)}`;
-        this.infoMessagesService.showErrors(message);
-      }
-    );
+      this.animalService.createPost(postData).subscribe(
+        //TODO: Modify post data according to expected backend model
+        () => {
+          this.router.navigate([""]);
+          console.log("Post was published successfully");
+          // TODO: Show notification for successfully created post
+        },
+        (err) => {
+          const message = `Post creation failed: ${handleError(err)}`;
+          this.infoMessagesService.showErrors(message);
+        }
+      );
+    };
   }
 }

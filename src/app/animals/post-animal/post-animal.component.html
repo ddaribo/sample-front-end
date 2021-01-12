@@ -7,42 +7,42 @@
       <mat-label>Title</mat-label>
       <input matInput type="text" formControlName="title" required />
     </mat-form-field>
-  
+
     <mat-form-field>
       <mat-label>Description</mat-label>
       <input matInput type="text" formControlName="description" required />
     </mat-form-field>
-  
+
     <mat-form-field appearance="fill">
       <mat-label>Animal type</mat-label>
       <mat-select [(value)]="selected" formControlName="animal_species" required>
         <mat-option value="dog">Dog</mat-option>
         <mat-option value="cat">Cat</mat-option>
-        <mat-option value="option3">Rabbit</mat-option>
-        <mat-option value="option4">Bird</mat-option>
-        <mat-option value="option5">Reptile</mat-option>
-        <mat-option value="option6">Other</mat-option>
+        <mat-option value="rabbit">Rabbit</mat-option>
+        <mat-option value="bird">Bird</mat-option>
+        <mat-option value="reptile">Reptile</mat-option>
+        <mat-option value="other">Other</mat-option>
       </mat-select>
     </mat-form-field>
-  
+
     <mat-form-field>
       <mat-label>City</mat-label>
       <input matInput type="text" formControlName="city" required />
     </mat-form-field>
-  
+
     <mat-form-field>
       <mat-label>Post due date:</mat-label>
-      <input matInput type="date" formControlName="date_updated" required />
+      <input matInput type="date" formControlName="due_date" required />
     </mat-form-field>
-  
+
       <label>Upload photo of the animal:</label>
       <!-- Should we allow posts without images? -->
       <input type="file" formControlName="photo" id="photo" accept='image/*' (change)="onFileChanged($event)" />
-  
+
       <div class="img-container">
         <img *ngIf="previewImage" [src]="previewImage"/>
       </div>
-   
+
     <button mat-button type="submit" [disabled]="!animalForm.valid" >
       Submit
     </button>
