@@ -7,6 +7,7 @@ import { AnimalDetailsComponent } from "../animals/animal-details/animal-details
 import { HomePageComponent } from "../shared/layouts/home-page/home-page.component";
 import { UserPrivateComponent } from "../user/user-private/user-private.component";
 import { PostAnimalComponent } from "../animals/post-animal/post-animal.component";
+import { APP_BASE_HREF } from "@angular/common";
 
 const routes: Routes = [
   {
@@ -18,29 +19,17 @@ const routes: Routes = [
     component: RegisterComponent
   },
   {
-    path: "animals",
-    component: AnimalsComponent
-  },
-  {
-    path: "animals/post",
-    component: PostAnimalComponent
-  },
-  {
-    path: "animals/:animalId",
-    component: AnimalDetailsComponent
-  },
-  {
     path: "user",
     component: UserPrivateComponent
   },
   {
-    path: "",
+    path: '',
     component: HomePageComponent
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: true})],
   exports: [RouterModule],
   declarations: []
 })

@@ -6,25 +6,27 @@
       <mat-card-header>
         <h2><span>Name: </span>{{ animal.title }}</h2>
         <h2><span>Type: </span>{{ animal.animal_species | uppercase }}</h2>
-        <h3><span>Location: </span>{{ animal.location }}</h3>
+        <h3><span>Location: </span>{{ animal.city }}</h3>
         <p><span>Description: </span>{{ animal.description }}</p>
-        <h4><span>Posted by: </span>{{ animal.user_created.first_name + animal.user_created.last_name }}</h4>
-        <h4><span>Due date: </span>{{ animal.date_updated }}</h4>
+        <h4><span>Posted by: </span>{{ animal.author.name}}</h4>
+        <h4><span>Due date: </span>{{ animal.date_updated | date:'fullDate' }}</h4>
 
         <div *ngIf="animal.volunteers">
           <p>Someone has requested to rescue {{ animal.title}}</p>
         </div>
-        <button mat-button (click)="wantToRescue(animal)" [disabled]="animal.volunteers">
-          Rescue
+        <button mat-button (click)="wantToRescue(animal)">
+          <span class="material-icons">
+            add_alert
+          </span>
+            Subscribe for notifications
         </button>
       </mat-card-header>
 
       <div class="details">
-        <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-          alt="Photo of {{ animal.name }}" />
+        <img mat-card-image src="{{ animal.photo }}"
+          alt="Photo of {{ animal.title }}" />
 
         <!-- if the current user rescued the animal - access the communication channel? or ? -->
-        <button mat-button id="communicationBtn">Talk to user</button>
       </div>
     </div>
   </mat-card>

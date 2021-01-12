@@ -1,15 +1,32 @@
 <h1>Explore cuties for rescue:</h1>
 <div>
+  <form >
+      <mat-form-field appearance="fill">
+        <mat-label>Filter criteria</mat-label>
+        <mat-select [(ngModel)]="filterCriteria" name="criteria" style="width: 10em;">
+          <mat-option value="title">Title</mat-option>
+          <mat-option value="animal_species">Species</mat-option>
+          <mat-option value="city">City</mat-option>
+          <mat-option value="author">Author</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div style="display: flex; flex-direction: column; margin-left:3em">
+        <mat-form-field>
+          <mat-label>Filter animals</mat-label>
+          <input matInput type="text" [(ngModel)]="filterInput" name="filterInput"/>
+        </mat-form-field>
+      </div>
+    </form>
   <mat-grid-list cols="3">
     <!-- <div *ngFor="let animal of animals; let i = index;"> -->
-      <!-- or use observable -->
-      <div *ngFor="let animal of (posts$ | async) ; let i = index;">
-          <mat-grid-tile>
-          <app-animal-list-item [animal]="animal" [animalIndex]="i"></app-animal-list-item>
-        </mat-grid-tile>
-        </div>
+    <!-- or use observable -->
+    <div *ngFor="let animal of (posts$ | async) | filter:filterInput:filterCriteria; let i = index;">
+      <mat-grid-tile>
+        <app-animal-list-item [animal]="animal" [animalIndex]="i"></app-animal-list-item>
+      </mat-grid-tile>
+    </div>
     <div>
-
+      <router-outlet></router-outlet>
     </div>
   </mat-grid-list>
 </div>

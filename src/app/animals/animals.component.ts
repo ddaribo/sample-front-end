@@ -13,21 +13,22 @@ import { AnimalService } from "./animal.service";
 })
 export class AnimalsComponent implements OnInit {
 
-  
   animals: Post[] = [];
   posts$: Observable<Post[]>;
   postsChanged = new BehaviorSubject<Post[]>(null);
 
+  filterInput = '';
+  filterCriteria: string;
   constructor(
     private animalService: AnimalService,
     private infoMessagesService: InfoMessagesService) {}
 
   ngOnInit() {
+    this.filterCriteria = 'title';
     /*this.animalService.getPosts().subscribe((response: any) => {
       console.log(response);
       this.animals = response;
     });*/
-
     // Or use observable?
     this.posts$ = this.animalService.getPosts();
     

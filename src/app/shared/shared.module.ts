@@ -17,8 +17,9 @@ import { MatSelectModule } from "@angular/material/select";
 import { MatCardModule } from "@angular/material/card";
 import { MatGridListModule } from "@angular/material/grid-list";
 import { MatInputModule } from "@angular/material/input";
-import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatFormFieldModule, MatLabel } from "@angular/material/form-field";
 import { ShortenPipe } from "./shorten-description.pipe";
+import { FilterPipe } from './filter.pipe';
 
 @NgModule({
   imports: [
@@ -26,11 +27,12 @@ import { ShortenPipe } from "./shorten-description.pipe";
     BrowserAnimationsModule,
     RouterModule
   ],
-  declarations: [HeaderComponent, HomePageComponent, InfoMessagesComponent, ShortenPipe],
+  declarations: [HeaderComponent, HomePageComponent, InfoMessagesComponent, ShortenPipe, FilterPipe],
   exports: [
     HeaderComponent, 
     HomePageComponent,
     ShortenPipe,
+    FilterPipe,
       /*Material design modules */
     MatToolbarModule,
     MatIconModule,
@@ -43,7 +45,8 @@ import { ShortenPipe } from "./shorten-description.pipe";
     MatCardModule,
     MatGridListModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatSelectModule,
   ]
 })
 export class SharedModule {}

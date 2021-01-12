@@ -1,5 +1,22 @@
-h1{
+h1 {
+  margin: 1em auto;
   text-align: center;
   color: crimson;
-  margin-top: 1em;
+}
+
+.mat-grid-list{
+  margin-top: 0 ! important;
+}
+
+#filterForm{
+  display: flex; 
+  flex-direction: row;
+}
+
+form{
+  margin: 6em auto 0 auto; 
+  text-align: center;
+  display: flex; 
+  flex-direction: row;
+  width: max-content;
 }

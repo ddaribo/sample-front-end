@@ -3,7 +3,7 @@ import { Observable, BehaviorSubject } from "rxjs";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { tap } from "rxjs/operators";
 import { Post } from "../shared/models/post";
-import { backendURL, postsCreateURL, fakeAnimalsApiUrl } from "src/utils";
+import { backendURL, postsCreateURL, fakeAnimalsApiUrl, postsURL } from "src/utils";
 
 @Injectable()
 export class AnimalService {
@@ -15,7 +15,7 @@ export class AnimalService {
   }
 
   public getPosts(): Observable<Post[]> {
-    return this.http.get<Post[]>(fakeAnimalsApiUrl);
+    return this.http.get<Post[]>(backendURL + postsURL);
   }
 
   public createPost(postData): Observable<Post> {
@@ -35,18 +35,4 @@ export class AnimalService {
       );
   }
 }
-  /*
-  loadAllAnimals(): Observable<Animal[]> {
-    return this.http.get<Animal[]>("/api/animals")
-      .pipe(
-          map(res => res["animals"]), // or sth else
-          // only trigger one http request for this observable; otherwise every subscription issues a separate http request
-          shareReplay()
-      );
-  }
 
-  public createPost(postFormData) {
-    return this.http.post<Post>(fakeAnimalsApiUrl, postFormData);
-  }
-}
-*/

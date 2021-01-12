@@ -10,10 +10,7 @@ import { AnimalService } from "../animal.service";
 })
 export class AnimalDetailsComponent implements OnInit {
   animal: any;
-
-  //utility variable used to store all animals (not needed really in a real scenario), but due to the simulated fake backend
   animalArr: any;
-
   constructor(
     private route: ActivatedRoute,
     private animalService: AnimalService
@@ -25,6 +22,7 @@ export class AnimalDetailsComponent implements OnInit {
 
       this.route.paramMap.subscribe((params) => {
         this.animal = this.animalArr[params.get("animalId")];
+        console.log(this.animal);
       });
     });
   }

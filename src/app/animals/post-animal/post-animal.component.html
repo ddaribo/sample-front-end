@@ -37,7 +37,7 @@
 
       <label>Upload photo of the animal:</label>
       <!-- Should we allow posts without images? -->
-      <input type="file" formControlName="photo" id="photo" accept='image/*' (change)="onFileChanged($event)" />
+      <input type="file" formControlName="photo" id="photo" required accept='image/*' (change)="onFileChanged($event)" />
 
       <div class="img-container">
         <img *ngIf="previewImage" [src]="previewImage"/>
