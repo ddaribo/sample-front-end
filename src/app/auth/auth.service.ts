@@ -5,7 +5,7 @@ import {
   HttpHeaders
 } from "@angular/common/http";
 
-import { map, shareReplay, tap } from "rxjs/operators";
+import { map, tap } from "rxjs/operators";
 import * as _ from "lodash";
 
 import { backendURL, camelToSnakeCase, loginURL, registerURL } from "src/utils";
@@ -45,9 +45,7 @@ export class AuthService {
           this.subject.next(user);
           localStorage.setItem(AUTH_DATA, JSON.stringify(user['token']));
           localStorage.setItem(USER_DATA, JSON.stringify(user));
-        }),
-        // Avoid multiple calls to this api endpoint
-        shareReplay()
+        })
       );
   }
 

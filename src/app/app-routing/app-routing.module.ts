@@ -8,6 +8,7 @@ import { HomePageComponent } from "../shared/layouts/home-page/home-page.compone
 import { UserPrivateComponent } from "../user/user-private/user-private.component";
 import { PostAnimalComponent } from "../animals/post-animal/post-animal.component";
 import { APP_BASE_HREF } from "@angular/common";
+import { PageNotFoundComponent } from "../shared/page-not-found/page-not-found.component";
 
 const routes: Routes = [
   {
@@ -37,6 +38,10 @@ const routes: Routes = [
   {
     path: '',
     component: HomePageComponent
+  },
+  {
+    path: '**',
+    component: PageNotFoundComponent
   }
 ];
 

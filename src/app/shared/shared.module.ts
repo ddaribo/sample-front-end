@@ -20,6 +20,7 @@ import { MatInputModule } from "@angular/material/input";
 import { MatFormFieldModule, MatLabel } from "@angular/material/form-field";
 import { ShortenPipe } from "./shorten-description.pipe";
 import { FilterPipe } from './filter.pipe';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   imports: [
@@ -27,7 +28,7 @@ import { FilterPipe } from './filter.pipe';
     BrowserAnimationsModule,
     RouterModule
   ],
-  declarations: [HeaderComponent, HomePageComponent, InfoMessagesComponent, ShortenPipe, FilterPipe],
+  declarations: [HeaderComponent, HomePageComponent, InfoMessagesComponent, ShortenPipe, FilterPipe, PageNotFoundComponent],
   exports: [
     HeaderComponent, 
     HomePageComponent,
