@@ -4,17 +4,13 @@ h1 {
   color: crimson;
 }
 
-.mat-grid-list{
-  margin-top: 0 ! important;
-}
-
 #filterForm{
   display: flex; 
   flex-direction: row;
 }
 
 form{
-  margin: 6em auto 0 auto; 
+  margin: 6em auto 6em auto; 
   text-align: center;
   display: flex; 
   flex-direction: row;

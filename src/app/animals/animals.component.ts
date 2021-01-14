@@ -1,9 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { BehaviorSubject, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { InfoMessagesService } from "src/app/shared/info-messages/info-messages.service";
 import { Post } from "src/app/shared/models/post";
-import { User } from "../shared/models/user";
 import { AnimalService } from "./animal.service";
 
 @Component({

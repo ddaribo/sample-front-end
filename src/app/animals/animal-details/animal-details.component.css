@@ -11,13 +11,13 @@ h1 {
   font-weight: bold;
   font-size: 1.2em;
   margin-top: 1em;
-  width: 15em;
-  padding: 0.5em 0;
+  width: min-content;
+  padding: 0.5em 1em;
 }
 
 .mat-card {
   width: 50%;
-  margin: 0 auto;
+  margin: 0 auto 3em auto;
   padding: 4em;
 }
 
@@ -49,11 +49,13 @@ h1 {
 /*FB share button*/
 #fb-share-button {
   background: #3b5998;
+  width: 4em;
   border-radius: 3px;
   font-weight: 600;
   padding: 8px 8px;
   display: flex;
   position: static;
+  align-self: self-end;
 }
 
 #fb-share-button:hover {

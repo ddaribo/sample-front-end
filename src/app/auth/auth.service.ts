@@ -9,7 +9,6 @@ import { map, tap } from "rxjs/operators";
 import * as _ from "lodash";
 
 import { backendURL, camelToSnakeCase, loginURL, registerURL } from "src/utils";
-import { User } from "../shared/models/user";
 
 // Local storage key under which the user profile is saved
 const AUTH_DATA = "Authorization";
@@ -19,9 +18,9 @@ const USER_DATA = "User";
   providedIn: "root",
 })
 export class AuthService {
-  private subject = new BehaviorSubject<User>(null);
+  public subject = new BehaviorSubject<any>(null);
 
-  user$: Observable<User> = this.subject.asObservable();
+  user$: Observable<any> = this.subject.asObservable();
   isLoggedIn$: Observable<boolean>;
   isLoggedOut$: Observable<boolean>;
 
@@ -37,9 +36,9 @@ export class AuthService {
     }
   }
 
-  public login(email: string, password: string): Observable<User> {
+  public login(email: string, password: string): Observable<any> {
     return this.http
-      .post<User>(backendURL + loginURL, { email, password })
+      .post(backendURL + loginURL, { email, password })
       .pipe(
         tap((user) => {
           this.subject.next(user);
@@ -56,7 +55,7 @@ export class AuthService {
     localStorage.removeItem(USER_DATA);
   }
 
-  public register(userData: any): Observable<User> {
+  public register(userData: any): Observable<any> {
     let postData = {};
     for (const key in userData) {
       const newKey: string = camelToSnakeCase(key);
@@ -70,7 +69,7 @@ export class AuthService {
       }),
     };
 
-    return this.http.post<User>(
+    return this.http.post(
       backendURL + registerURL,
       JSON.stringify(postData),
       httpOptions

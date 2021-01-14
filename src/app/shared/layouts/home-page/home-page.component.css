@@ -2,6 +2,10 @@
   margin: 5em;
 }
 
+#backgroundDiv{
+  background-color: white;
+}
+
 #firstHeader,
 #secondHeader {
   display: flex;

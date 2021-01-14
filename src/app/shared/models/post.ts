@@ -1,7 +1,7 @@
-import { User } from "./user";
+
 
 export class Post {
-    // id: number;
+    id: number;
     title: string;
     description: string;
     location: string;
@@ -9,9 +9,10 @@ export class Post {
     date_created: Date;
     date_updated: Date;
     photo: string;
-    user_created: User;
+    author: any;
 
     constructor(
+        id: number,
         title: string,
         description: string,
         location: string,
@@ -19,9 +20,10 @@ export class Post {
         date_created: Date,
         date_updated: Date,
         photo: string,
-        user_created: User,
+        author: any,
     ) {
 
+        this.id = id;
         this.title = title;
         this.description = description;
         this.location = location;
@@ -29,6 +31,6 @@ export class Post {
         this.date_created = date_created;
         this.date_updated = date_updated;
         this.photo = photo;
-        this.user_created = user_created;
+        this.author = author;
     }
 }

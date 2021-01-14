@@ -1,6 +1,9 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
-import { map } from "rxjs/operators";
+import { ActivatedRoute, Router } from "@angular/router";
+import { AuthService } from "src/app/auth/auth.service";
+import { InfoMessagesService } from "src/app/shared/info-messages/info-messages.service";
+import { Post } from "src/app/shared/models/post";
+import { handleError } from "src/utils";
 import { AnimalService } from "../animal.service";
 
 @Component({
@@ -11,21 +14,52 @@ import { AnimalService } from "../animal.service";
 export class AnimalDetailsComponent implements OnInit {
   animal: any;
   animalArr: any;
+  animalId: number;
+  isUserLoggedIn: boolean;
+  isCurrentUserTheAuthor: boolean;
+
   constructor(
     private route: ActivatedRoute,
-    private animalService: AnimalService
-  ) {}
+    private animalService: AnimalService,
+    private authService: AuthService,
+    private infoMessagesService: InfoMessagesService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
-    this.animalService.getPosts().subscribe((response: any) => {
-      this.animalArr = response;
-
-      this.route.paramMap.subscribe((params) => {
-        this.animal = this.animalArr[params.get("animalId")];
-        console.log(this.animal);
-      });
+    this.route.paramMap.subscribe((params) => {
+      this.animalId = +params.get("animalId");
     });
+
+    this.animalService.getAnimalById(this.animalId)
+      .subscribe((response: Post) => {
+        this.animal = response;
+        this.authService.subject.subscribe((user: any) => {
+          if (user && user.me.id === this.animal.author.id) {
+            this.isCurrentUserTheAuthor = true;
+          }
+        });
+      });
   }
 
-  wantToRescue(animal) {}
+  onDeletePost(animalId: number) {
+    this.animalService.deletePost(animalId).subscribe(
+      (response: any) => () => {
+        const message = `Successfully deleted post!`;
+        this.router.navigate(["/animals"]);
+        this.infoMessagesService.showErrors({
+          message: message,
+          areErrors: false
+        });
+      },
+      (err) => {
+        const message = `Failed deleting post: ${handleError(err)}.`;
+        this.infoMessagesService.showErrors({
+          message: message,
+          areErrors: true
+        });
+      })
+  }
+
+  wantToRescue(animal) { }
 }

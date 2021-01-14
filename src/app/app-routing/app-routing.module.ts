@@ -9,6 +9,7 @@ import { UserPrivateComponent } from "../user/user-private/user-private.componen
 import { PostAnimalComponent } from "../animals/post-animal/post-animal.component";
 import { APP_BASE_HREF } from "@angular/common";
 import { PageNotFoundComponent } from "../shared/page-not-found/page-not-found.component";
+import { AuthGuard } from "../auth/auth.guard";
 
 const routes: Routes = [
   {
@@ -25,6 +26,7 @@ const routes: Routes = [
   },
   {
     path: "animals/post",
+    canActivate: [AuthGuard],
     component: PostAnimalComponent
   },
   {

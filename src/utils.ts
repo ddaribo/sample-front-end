@@ -11,9 +11,6 @@ export const loginURL = "auth/login/";
 export const postsURL = "posts/";
 export const postsCreateURL = "posts/create/";
 
-export const fakeAnimalsApiUrl = 'https://ng-animals-rescue-default-rtdb.europe-west1.firebasedatabase.app/animals.json';
-
-
 export const handleError = (error: HttpErrorResponse) => {
   if (error.error instanceof ErrorEvent) {
     // A client-side or network error occurred. Handle it accordingly.
