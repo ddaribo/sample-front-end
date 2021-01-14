@@ -45,3 +45,33 @@ h1 {
 #communicationBtn {
   margin-left: 20em;
 }
+
+/*FB share button*/
+#fb-share-button {
+  background: #3b5998;
+  border-radius: 3px;
+  font-weight: 600;
+  padding: 8px 8px;
+  display: flex;
+  position: static;
+}
+
+#fb-share-button:hover {
+  cursor: pointer;
+  background: #213A6F
+}
+
+#fb-share-button svg {
+  width: 18px;
+  fill: white;
+  vertical-align: middle;
+  border-radius: 2px
+}
+
+#fb-share-button a, #fb-share-button a:visited, #fb-share-button a:active {
+  vertical-align: middle;
+  color: white;
+  font-size: 14px;
+  padding: 0 3px;
+  text-decoration: none;
+}

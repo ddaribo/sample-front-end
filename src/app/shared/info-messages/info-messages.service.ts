@@ -5,7 +5,7 @@ import { filter } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class InfoMessagesService implements OnDestroy {
+export class InfoMessagesService {
 
   constructor() { }
   
@@ -20,7 +20,4 @@ export class InfoMessagesService implements OnDestroy {
       this.subject.next(messages);
     }
 
-    ngOnDestroy(): void {
-      this.subject.unsubscribe();
-    }
 }

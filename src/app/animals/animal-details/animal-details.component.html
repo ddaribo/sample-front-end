@@ -1,5 +1,10 @@
-<h1>Animal Details</h1>
+<!-- For FB share functionality -->
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v9.0"
+  nonce="RXppn0YE"></script>
+  <!-- End -->
 
+<h1>Animal Details</h1>
 <div *ngIf="animal">
   <mat-card>
     <div class="card-content">
@@ -9,7 +14,8 @@
         <h3><span>Location: </span>{{ animal.city }}</h3>
         <p><span>Description: </span>{{ animal.description }}</p>
         <h4><span>Posted by: </span>{{ animal.author.name}}</h4>
-        <h4><span>Due date: </span>{{ animal.date_updated | date:'fullDate' }}</h4>
+        <h4><span>Post last updated: </span>{{ animal.date_updated | date:'fullDate' }}</h4>
+        <h4><span>Expires: </span>{{ animal.date_updated | date:'fullDate' }}</h4>
 
         <div *ngIf="animal.volunteers">
           <p>Someone has requested to rescue {{ animal.title}}</p>
@@ -26,7 +32,19 @@
         <img mat-card-image src="{{ animal.photo }}"
           alt="Photo of {{ animal.title }}" />
 
-        <!-- if the current user rescued the animal - access the communication channel? or ? -->
+          <div id="fb-share-button" class="fb-share-button" 
+               data-href="http://localhost:4200/#/animals/{{ animalId }}" 
+               data-layout="button_count" data-size="large">
+
+               <svg viewBox="0 0 12 12" preserveAspectRatio="xMidYMid meet">
+                <path class="svg-icon-path" d="M9.1,0.1V2H8C7.6,2,7.3,2.1,7.1,2.3C7,2.4,6.9,2.7,6.9,3v1.4H9L8.8,6.5H6.9V12H4.7V6.5H2.9V4.4h1.8V2.8 c0-0.9,0.3-1.6,0.7-2.1C6,0.2,6.6,0,7.5,0C8.2,0,8.7,0,9.1,0.1z"></path>
+              </svg>
+
+                <a target="_blank" 
+                   href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4200%2F%23%2Fanimals%2F{{ animalId }}&amp;src=sdkpreparse">
+                   Share
+                  </a>
+          </div>
       </div>
     </div>
   </mat-card>
