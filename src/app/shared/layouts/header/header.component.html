@@ -19,8 +19,13 @@
 			<a mat-button [routerLink]="['animals']">Animals</a>
 		</div>
 		<div *ngIf="auth.isLoggedIn$ | async">
-			<a mat-button [routerLink]="['user']">
+			<a mat-button (click)="onNotificationsClicked()">
 				<span matBadge="2" matBadgeColor="warn" class="material-icons">notifications</span></a>
+		</div>
+		<div *ngIf="auth.isLoggedIn$ | async">
+			<a mat-button [routerLink]="['user']">
+				<span class="material-icons">face</span>
+			</a>
 		</div>
 		<div *ngIf="auth.isLoggedIn$ | async">
 			<a mat-button (click)="logout()">
