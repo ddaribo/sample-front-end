@@ -36,7 +36,7 @@ export class PostAnimalComponent implements OnInit {
 
   onFileChanged(event: any){
     const files =  event.target.files;
-    if (files.length === 0)
+    if (!files || files.length === 0)
       return;
 
     this.uploadedImageFile = event.target.files[0];
