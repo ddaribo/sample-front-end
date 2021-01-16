@@ -1,5 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
 import { UserService } from '../user.service';
+
+// @Injectable({providedIn: 'root'})
+// export class EditingService {
+//   isEditing: boolean = false;
+// }
 
 @Component({
   selector: 'app-user-private',
@@ -9,10 +14,21 @@ import { UserService } from '../user.service';
 export class UserPrivateComponent implements OnInit {
 
   user: any;
-  constructor(private userService: UserService) { }
+  constructor(
+    private userService: UserService,
+    // private isEditingService: EditingService
+  ) { }
 
   ngOnInit() {
     this.user = this.userService.getCurrentUser();
+  }
+
+  // get isEditing(): boolean {
+  //   return this.isEditingService.isEditing;
+  // }
+
+  toggleEditMode() {
+    // this.isEditingService.isEditing = !this.isEditing;
   }
 
 }
