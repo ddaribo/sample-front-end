@@ -42,8 +42,8 @@ export class AnimalDetailsComponent implements OnInit {
       });
   }
 
-  onDeletePost(animalId: number) {
-    this.animalService.deletePost(animalId).subscribe(
+  onDeletePost(postId: number) {
+    this.animalService.deletePost(postId).subscribe(
       (response: any) => () => {
         const message = `Successfully deleted post!`;
         this.router.navigate(["/animals"]);

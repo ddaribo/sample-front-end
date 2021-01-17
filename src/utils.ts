@@ -8,6 +8,7 @@ export const camelToSnakeCase = (key: string) =>
 export const backendURL = "http://127.0.0.1:8000";
 export const registerURL = "/auth/register/";
 export const loginURL = "/auth/login/";
+export const logoutURL = '/auth/logout/';
 export const postsURL = "/posts/";
 export const postsCreateURL = "/posts/create/";
 

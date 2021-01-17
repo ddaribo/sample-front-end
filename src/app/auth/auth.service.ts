@@ -8,7 +8,7 @@ import {
 import { map, tap } from "rxjs/operators";
 import * as _ from "lodash";
 
-import { backendURL, camelToSnakeCase, loginURL, registerURL } from "src/utils";
+import { backendURL, camelToSnakeCase, loginURL, registerURL, logoutURL } from "src/utils";
 
 // Local storage key under which the user profile is saved
 const AUTH_DATA = "Authorization";
@@ -49,8 +49,16 @@ export class AuthService {
   }
 
   public logout() {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json",
+        'Authorization': `JWT ${JSON.parse(localStorage.getItem('Authorization'))}`,
+
+      })
+    }
+
+    this.http.get(backendURL + logoutURL, httpOptions);
     this.subject.next(null);
-    // TODO: Should call the logout API
     localStorage.removeItem(AUTH_DATA);
     localStorage.removeItem(USER_DATA);
   }

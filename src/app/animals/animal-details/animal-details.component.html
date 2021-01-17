@@ -9,13 +9,13 @@
   <mat-card>
     <div class="card-content">
       <mat-card-header>
-        <h2><span>Name: </span>{{ animal.title }}</h2>
+        <h2><span>Title: </span>{{ animal.title }}</h2>
         <h2><span>Type: </span>{{ animal.animal_species | uppercase }}</h2>
         <h3><span>Location: </span>{{ animal.city }}</h3>
         <p><span>Description: </span>{{ animal.description }}</p>
         <h4><span>Posted by: </span>{{ animal.author.name}}</h4>
         <h4><span>Post last updated: </span>{{ animal.date_updated | date:'fullDate' }}</h4>
-        <h4><span>Expires: </span>{{ animal.date_updated | date:'fullDate' }}</h4>
+        <h4><span>Expires: </span>{{ animal.due_date | date:'fullDate' }}</h4>
 
        <div style="width: max-content;">
 
@@ -31,7 +31,7 @@
               *ngIf="isCurrentUserTheAuthor">
             <button mat-button style="background-color:crimson">
               <span class="material-icons">
-                create
+                edit
               </span>
                 Edit
             </button>
