@@ -51,4 +51,15 @@ export class AnimalService {
 
     return this.http.delete(backendURL + postsURL + postId + '/delete/', httpOptions);
   }
+
+  public sendAdoptionRequest(postId: number){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json",
+        'Authorization': `JWT ${JSON.parse(localStorage.getItem('Authorization'))}`,
+      })
+    }
+
+    return this.http.get(backendURL + postsURL + postId + '/send-adoption-request/', httpOptions);
+  }
 }

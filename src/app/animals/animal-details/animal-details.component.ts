@@ -60,5 +60,22 @@ export class AnimalDetailsComponent implements OnInit {
       })
   }
 
-  wantToRescue(animal) { }
+  wantToRescue(post) {
+    this.animalService.sendAdoptionRequest(post.id).subscribe(
+      (response: any) => () => {
+        const message = `Request sent successfully!`;
+        this.infoMessagesService.showErrors({
+          message: message,
+          areErrors: false
+        });
+      },
+      (err) => {
+        const message = `Failed sending request: ${handleError(err)}.`;
+        this.infoMessagesService.showErrors({
+          message: message,
+          areErrors: true
+        });
+      })
+  }
+
 }
