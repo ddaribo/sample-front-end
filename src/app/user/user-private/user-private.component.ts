@@ -1,6 +1,8 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, ValidationErrors, Validators } from "@angular/forms";
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { InfoMessagesService } from "src/app/shared/info-messages/info-messages.service";
+import { handleError } from "src/utils";
 import { UserService } from '../user.service';
 
 @Component({
@@ -20,6 +22,7 @@ export class UserPrivateComponent implements OnInit {
   constructor(
     private userService: UserService,
     private fb: FormBuilder,
+    public infoMessagesService: InfoMessagesService
   ) { }
 
   ngOnInit() {
@@ -32,6 +35,27 @@ export class UserPrivateComponent implements OnInit {
     })
   }
 
-  onUserSubmit() {}
+  onUserSubmit() {
+    this.userService.update(this.editUserForm.value).subscribe(
+      (updatedData) => {
+        this.isEditing = false;
+        this.user = {'me': updatedData}; // Refetch user data
+        const message = `User data successfully updated!`;
+        this.infoMessagesService.showErrors( {
+          message: message,
+          areErrors: false
+        });
+      },
+      (err) => {
+        const message = `Error updating user's data: ${handleError(err)}.`;
+        //this.infoMessagesService.showErrors(message);
+        this.infoMessagesService.showErrors( {
+          message: message,
+          areErrors: true
+        });
+      }
+    );
+
+  }
 
 }

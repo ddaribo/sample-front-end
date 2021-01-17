@@ -1,11 +1,11 @@
 <div class="container">
   <div *ngIf="isEditing; else elseBlock">
-    <div class="editIcon">
-      <a mat-button type="submit" [disabled]="!editUserForm.valid">
-        <span class="material-icons" (click)="isEditing = !isEditing">check</span>
-      </a>
-    </div>
     <form [formGroup]="editUserForm" (ngSubmit)="onUserSubmit()" class="user-form">
+      <div class="editIcon">
+        <button mat-button type="submit" [disabled]="!editUserForm.valid">
+          <span class="material-icons">check</span>
+        </button>
+      </div>
       <div>
         <mat-form-field>
           <mat-label>Email</mat-label>

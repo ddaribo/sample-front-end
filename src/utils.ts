@@ -11,6 +11,7 @@ export const loginURL = "/auth/login/";
 export const logoutURL = '/auth/logout/';
 export const postsURL = "/posts/";
 export const postsCreateURL = "/posts/create/";
+export const userUpdateURL = '/users/update/'
 
 export const handleError = (error: HttpErrorResponse) => {
   if (error.error instanceof ErrorEvent) {
