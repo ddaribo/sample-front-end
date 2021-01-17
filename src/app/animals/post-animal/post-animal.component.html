@@ -1,4 +1,5 @@
-<h1>Add animal for rescue. Write down your post:</h1>
+<h1 *ngIf="!isEditing">Add animal for rescue. Write down your post:</h1>
+<h1 *ngIf="isEditing">Edit your post:</h1>
 
 <form [formGroup]="animalForm" (ngSubmit)="onSubmit()">
   <div class="form-content">
@@ -10,7 +11,7 @@
 
     <mat-form-field>
       <mat-label>Description</mat-label>
-      <input matInput type="text" formControlName="description" required />
+      <textarea matInput formControlName="description" required ></textarea>
     </mat-form-field>
 
     <mat-form-field appearance="fill">
@@ -35,11 +36,16 @@
       <input matInput type="date" formControlName="due_date" required />
     </mat-form-field>
 
-      <label>Upload photo of the animal:</label>
+      <label *ngIf="!isEditing">Upload photo of the animal:</label>
+      <label *ngIf="isEditing">Change animal photo:</label>
       <!-- Should we allow posts without images? -->
-      <input type="file" formControlName="photo" id="photo" required accept='image/*' (change)="onFileChanged($event)" />
+      <input type="file" formControlName="photo" id="photo" accept='image/*' (change)="onFileChanged($event)" />
 
-      <div class="img-container">
+      <div class="img-container"  *ngIf="isEditing">
+        <img *ngIf="animal" src="{{BASE_BACKEND_URL}}{{ animal.photo }}"/>
+      </div>
+
+      <div class="img-container"  *ngIf="!isEditing">
         <img *ngIf="previewImage" [src]="previewImage"/>
       </div>
 

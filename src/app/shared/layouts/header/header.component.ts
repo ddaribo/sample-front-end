@@ -26,9 +26,4 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  onNotificationsClicked(){
-    // TODO: Show notifications bar
-    // Probably something like setting up some boolean variable for that and adding
-    // all notifications as private value in constructor and list them if true
-  }
 }

@@ -10,6 +10,7 @@ import { PostAnimalComponent } from "../animals/post-animal/post-animal.componen
 import { APP_BASE_HREF } from "@angular/common";
 import { PageNotFoundComponent } from "../shared/page-not-found/page-not-found.component";
 import { AuthGuard } from "../auth/auth.guard";
+import { Post } from "../shared/models/post";
 
 const routes: Routes = [
   {
@@ -33,6 +34,10 @@ const routes: Routes = [
   {
     path: "animals/:animalId",
     component: AnimalDetailsComponent
+  },
+  {
+    path: "animals/:animalId/edit",
+    component: PostAnimalComponent
   },
   {
     path: "user",

@@ -6,6 +6,10 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class FilterPipe implements PipeTransform {
 
   transform(value: any, filterString: string, filterCriteria: string): any {
+    if(value === null){
+      return;
+    }
+
     if(value.length === 0 || filterString === ''){
       return value;
     }

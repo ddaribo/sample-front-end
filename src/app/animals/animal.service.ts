@@ -7,7 +7,7 @@ import { backendURL, postsCreateURL, postsURL } from "src/utils";
 
 @Injectable()
 export class AnimalService {
-  private subject = new BehaviorSubject<Post>(null);
+  public subject = new BehaviorSubject<Post>(null);
   constructor(private http: HttpClient) {}
 
   getData() {
@@ -19,7 +19,7 @@ export class AnimalService {
   }
 
   getAnimalById(animalId: number): any {
-    return this.http.get<Post[]>(backendURL + postsURL + animalId);
+    return this.http.get<Post>(backendURL + postsURL + animalId);
   }
 
   public createPost(postData): Observable<Post> {
@@ -61,5 +61,22 @@ export class AnimalService {
     }
 
     return this.http.get(backendURL + postsURL + postId + '/send-adoption-request/', httpOptions);
+  }
+
+  public updatePost(animalId: number, postData: any){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json",
+        'Authorization': `JWT ${JSON.parse(localStorage.getItem('Authorization'))}`,
+
+      }),
+    }
+    return this.http
+      .put(postsURL + +animalId + '/update/', postData, httpOptions)
+      .pipe(
+        tap((post: any) => {
+          this.subject.next(post);
+        })
+      );
   }
 }

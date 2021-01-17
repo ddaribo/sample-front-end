@@ -29,9 +29,9 @@
           <div style="display: flex; flex-direction: row; justify-content: space-between; margin-top: 2em;"
               class="authorButtons"
               *ngIf="isCurrentUserTheAuthor">
-            <button mat-button style="background-color:crimson">
+            <button mat-button style="background-color:crimson" [routerLink]="['/animals', animal.id, 'edit']" [queryParams]="{editing:'1'}">
               <span class="material-icons">
-                create
+                edit
               </span>
                 Edit
             </button>
@@ -50,9 +50,8 @@
       </mat-card-header>
 
       <div class="details">
-        <!-- <img mat-card-image src="{{ animal.photo }}"
-          alt="Photo of {{ animal.title }}" /> -->
-          <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+        
+          <img mat-card-image src="{{BASE_BACKEND_URL}}{{ animal.photo }}" 
           alt="Photo of {{ animal.title }}" />
 
           <div id="fb-share-button" class="fb-share-button"

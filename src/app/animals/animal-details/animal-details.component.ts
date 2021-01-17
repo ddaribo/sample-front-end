@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { AuthService } from "src/app/auth/auth.service";
 import { InfoMessagesService } from "src/app/shared/info-messages/info-messages.service";
 import { Post } from "src/app/shared/models/post";
-import { handleError } from "src/utils";
+import { backendURL, handleError } from "src/utils";
 import { AnimalService } from "../animal.service";
 
 @Component({
@@ -17,6 +17,7 @@ export class AnimalDetailsComponent implements OnInit {
   animalId: number;
   isUserLoggedIn: boolean;
   isCurrentUserTheAuthor: boolean;
+  BASE_BACKEND_URL: string = backendURL;
 
   constructor(
     private route: ActivatedRoute,
@@ -58,6 +59,7 @@ export class AnimalDetailsComponent implements OnInit {
           areErrors: true
         });
       })
+      this.animalService.subject.next(null);
   }
 
   wantToRescue(post) {
