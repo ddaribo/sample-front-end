@@ -1,34 +1,41 @@
 <div class="container">
-  <div class="editIcon">
-    <a mat-button>
-      <span class="material-icons" (click)="toggleEditMode()">edit</span>
-    </a>
-  </div>
-  <!-- <div *ngIf="isEditing$"> -->
-    <p>Name: {{ user.me.name }}</p>
-    <p>Email: {{ user.me.email }}</p>
-    <p>City: {{ user.me.city }}</p>
-    <p>Receive notifications: {{ user.me.receive_notifications ? 'Yes': 'No' }}</p>
-  <!-- </div> -->
-  <!-- <div *ngIf="isEditing$ | async">
+  <div *ngIf="isEditing; else elseBlock">
+    <div class="editIcon">
+      <a mat-button type="submit" [disabled]="!editUserForm.valid">
+        <span class="material-icons" (click)="isEditing = !isEditing">check</span>
+      </a>
+    </div>
     <form [formGroup]="editUserForm" (ngSubmit)="onUserSubmit()" class="user-form">
-      <mat-form-field>
-        <mat-label>Email</mat-label>
-        <input matInput type="email" formControlName="email" required />
-      </mat-form-field>
+      <div>
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input matInput type="email" formControlName="email" required />
+        </mat-form-field>
+      </div>
 
-      <mat-form-field>
-        <mat-label>City</mat-label>
-        <input matInput type="text" formControlName="city" required />
-      </mat-form-field>
+      <div>
+        <mat-form-field>
+          <mat-label>City</mat-label>
+          <input matInput type="text" formControlName="city" required />
+        </mat-form-field>
+      </div>
 
-      <mat-form-field>
-        <mat-checkbox [formControl]="receiveNotifications">Receive notifications</mat-checkbox>
-      </mat-form-field>
-
-      <button mat-button type="submit" [disabled]="!editUserForm.valid">
-        Save
-      </button>
+      <div>
+        <mat-checkbox formControlName="receiveNotifications">Receive notifications</mat-checkbox>
+      </div>
     </form>
-  </div> -->
+  </div>
+  <div id="elseBlock" *ngIf="isEditing == false">
+    <div class="editIcon">
+      <a mat-button>
+        <span class="material-icons" (click)="isEditing = !isEditing">create</span>
+      </a>
+    </div>
+    <div>
+      <p>Name: {{ user.me.name }}</p>
+      <p>Email: {{ user.me.email }}</p>
+      <p>City: {{ user.me.city }}</p>
+      <p>Receive notifications: {{ user.me.receive_notifications ? 'Yes': 'No' }}</p>
+    </div>
+  </div>
 </div>
