@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { FormBuilder, Validators } from "@angular/forms";
-import { handleError, camelToSnakeCase, backendURL } from "src/utils";
+import { handleError, camelToSnakeCase, backendURL, postsURL } from "src/utils";
 import { InfoMessagesService } from "src/app/shared/info-messages/info-messages.service";
 import { AnimalService } from "../animal.service";
 import { UserService } from "src/app/user/user.service";
@@ -126,9 +126,17 @@ export class PostAnimalComponent implements OnInit {
         reader.onload = () => {
           postData['photo'] = reader.result;
           this.sendUpdateRequest(postData);
+          //this.router.navigateByUrl(backendURL + postsURL + this.animal.id);
         }
       }else{
-        this.sendUpdateRequest(postData);
+        // If not uploading new image?
+
+        //reader.readAsDataURL(this.BASE_BACKEND_URL + this.animal.photo);
+        //reader.onload = () => {
+          //postData['photo'] = reader.result;
+          this.sendUpdateRequest(postData);
+          //this.router.navigateByUrl(backendURL + postsURL + this.animal.id);
+        //}
       }
     }
   };

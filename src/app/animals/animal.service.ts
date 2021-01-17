@@ -10,9 +10,6 @@ export class AnimalService {
   public subject = new BehaviorSubject<Post>(null);
   constructor(private http: HttpClient) {}
 
-  getData() {
-    return this.http.get("/assets/db.json");
-  }
 
   public getPosts(): Observable<Post[]> {
     return this.http.get<Post[]>(backendURL + postsURL);
@@ -72,7 +69,7 @@ export class AnimalService {
       }),
     }
     return this.http
-      .put(postsURL + +animalId + '/update/', postData, httpOptions)
+      .post(backendURL + postsURL + +animalId + '/update/', postData, httpOptions)
       .pipe(
         tap((post: any) => {
           this.subject.next(post);

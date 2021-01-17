@@ -18,6 +18,11 @@
 		<div>
 			<a mat-button [routerLink]="['animals']">Animals</a>
 		</div>
+		<div>
+
+			<a mat-button [routerLink]="['animals/post']">
+				<span class="material-icons">create</span>Add Post</a>
+		</div>
 		<div *ngIf="auth.isLoggedIn$ | async">
 			<a mat-button [routerLink]="['user']">
 				<span class="material-icons" style="height: 1.3em; padding-top: 0.2em;">account_circle</span>

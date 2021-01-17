@@ -39,7 +39,7 @@
       <label *ngIf="!isEditing">Upload photo of the animal:</label>
       <label *ngIf="isEditing">Change animal photo:</label>
       <!-- Should we allow posts without images? -->
-      <input type="file" formControlName="photo" id="photo" accept='image/*' (change)="onFileChanged($event)" />
+      <input type="file" formControlName="photo" id="photo" required accept='image/*' (change)="onFileChanged($event)" />
 
       <div class="img-container"  *ngIf="isEditing">
         <img *ngIf="animal" src="{{BASE_BACKEND_URL}}{{ animal.photo }}"/>

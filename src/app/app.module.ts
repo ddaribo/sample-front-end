@@ -12,7 +12,6 @@ import { AppRoutingModule } from "./app-routing/app-routing.module";
 import { AuthModule } from "./auth/auth.module";
 
 import { UserModule } from "./user/user.module";
-import { ReadDataService } from "./read-data.service";
 import { HttpRequestInterceptor } from "./auth/auth-interceptor.service";
 
 @NgModule({
@@ -32,7 +31,6 @@ import { HttpRequestInterceptor } from "./auth/auth-interceptor.service";
   declarations: [AppComponent],
   bootstrap: [AppComponent],
   providers: [
-    ReadDataService,
     { provide: APP_BASE_HREF, useValue: "/" },
     {
       provide: HTTP_INTERCEPTORS,
