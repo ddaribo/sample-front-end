@@ -48,7 +48,7 @@ export class RegisterComponent implements OnInit {
         : { isMatching: false };
     };
   }
-  
+
   ngOnInit() {
     this.registerForm.controls.password.valueChanges.subscribe(() => {
       this.registerForm.controls.confirmPassword.updateValueAndValidity();
@@ -59,7 +59,7 @@ export class RegisterComponent implements OnInit {
     this.authService.register(this.registerForm.value).subscribe(
       () => {
         const message = `Successfully signed up!`;
-        this.router.navigate([""]);
+        this.router.navigate(["login"]);
         this.infoMessagesService.showErrors( {
           message: message,
           areErrors: false
@@ -74,7 +74,6 @@ export class RegisterComponent implements OnInit {
         });
       }
     );
-  
+
   }
 }
-

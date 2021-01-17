@@ -22,7 +22,8 @@ const routes: Routes = [
   },
   {
     path: "animals",
-    component: AnimalsComponent
+    component: AnimalsComponent,
+    pathMatch: 'full'
   },
   {
     path: "animals/post",

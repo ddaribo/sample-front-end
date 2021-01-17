@@ -9,11 +9,11 @@ import { backendURL, postsCreateURL, postsURL } from "src/utils";
 export class AnimalService {
   private subject = new BehaviorSubject<Post>(null);
   constructor(private http: HttpClient) {}
-  
+
   getData() {
     return this.http.get("/assets/db.json");
   }
-  
+
   public getPosts(): Observable<Post[]> {
     return this.http.get<Post[]>(backendURL + postsURL);
   }
@@ -39,9 +39,16 @@ export class AnimalService {
       );
   }
 
-  // Currently delete request is not supported by backend
   public deletePost(postId: number){
-    return this.http.delete(backendURL + postsURL + postId);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json",
+        'Authorization': `JWT ${JSON.parse(localStorage.getItem('Authorization'))}`,
+      })
+    }
+
+    this.subject.next(null);
+
+    return this.http.delete(backendURL + postsURL + postId + '/delete/', httpOptions);
   }
 }
-
