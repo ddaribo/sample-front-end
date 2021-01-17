@@ -50,7 +50,6 @@ export class PostAnimalComponent implements OnInit {
     reader.readAsDataURL(files[0]);
     reader.onload = (_event) => {
       this.previewImage = reader.result;
-      //console.log(this.previewImage);
     }
   }
 
