@@ -25,7 +25,7 @@
             </span>
               Send adoption request
           </button>
-  
+
           <div style="display: flex; flex-direction: row; justify-content: space-between; margin-top: 2em;"
               class="authorButtons"
               *ngIf="isCurrentUserTheAuthor">
@@ -35,7 +35,7 @@
               </span>
                 Edit
             </button>
-    
+
             <button mat-button style="background-color:rgb(161, 7, 38)"
                     (click)="onDeletePost(animalId)">
               <span class="material-icons">
@@ -43,7 +43,7 @@
               </span>
                 Delete
             </button>
-          
+
           </div>
         </div>
 
@@ -54,18 +54,18 @@
           alt="Photo of {{ animal.title }}" /> -->
           <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"
           alt="Photo of {{ animal.title }}" />
-          
-          <div id="fb-share-button" class="fb-share-button" 
+
+          <div id="fb-share-button" class="fb-share-button"
                [attr.data-href]="'http://localhost:4200/#/animals/' + 'animalId'"
                data-layout="button_count" data-size="large">
           <!-- Binding data-href like this to suppress angular error in console -->
-          
+
                <svg viewBox="0 0 12 12" preserveAspectRatio="xMidYMid meet">
                 <path class="svg-icon-path" d="M9.1,0.1V2H8C7.6,2,7.3,2.1,7.1,2.3C7,2.4,6.9,2.7,6.9,3v1.4H9L8.8,6.5H6.9V12H4.7V6.5H2.9V4.4h1.8V2.8 c0-0.9,0.3-1.6,0.7-2.1C6,0.2,6.6,0,7.5,0C8.2,0,8.7,0,9.1,0.1z"></path>
               </svg>
 
-                <a target="_blank" 
-                   href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4200%2F%23%2Fanimals%2F{{ animalId }}&amp;src=sdkpreparse">
+                <a target="_blank"
+                   href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A4200%2F%23%2Fanimals%2F{{ animalId }}&amp;src=sdkpreparse">
                    Share
                   </a>
           </div>
